@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         const parsed = JSON.parse(clean);
         return res.status(200).json({ parsed: parsed });
       } catch(e) {
-        return res.status(200).json({ raw: raw, parseError: e.message });
+        return res.status(200).json({ raw: raw });
       }
     }
     res.status(200).json(data);
