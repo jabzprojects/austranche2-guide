@@ -412,14 +412,22 @@ function runCheckerQuestion() {
     msgs.push({role:'user', content: 'Answer: ' + checkerState.answers[i]});
   }
   if (checkerState.qNum >= 5) msgs.push({role:'user', content:'You have enough information. Provide the final result JSON now.'});
-  fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({model:'claude-sonnet-4-5', max_tokens:800, system:sys, messages:msgs})})
+  fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({model:'claude-sonnet-4-5-20250929', max_tokens:800, system:sys, messages:msgs})})
     .then(function(r) { return r.json(); })
     .then(function(data) {
-      var text = (data.content && data.content[0]) ? data.content[0].text : '{}';
-      var clean = text.replace(/```json|```/g, '').trim();
-      var parsed;
-      try { parsed = JSON.parse(clean); }
-      catch(e) { parsed = {type:'question', question:'Can you clarify what specific tasks your practice performs for clients?', options:['We prepare and execute documents on their behalf','We provide advice only','We hold funds or manage assets','We do a combination of the above']}; }
+      var parsed = null;
+      if (data.parsed) {
+        parsed = data.parsed;
+      } else {
+        var text = (data.content && data.content[0]) ? data.content[0].text : '';
+        if (text) {
+          var clean = text.replace(/```json[\s\S]*?```|```/gi, '').trim();
+          try { parsed = JSON.parse(clean); } catch(e) { parsed = null; }
+        }
+      }
+      if (!parsed || !parsed.type) {
+        parsed = {type:'question', question:'Can you clarify what specific tasks your practice performs for clients in connection with this work?', options:['We prepare and execute documents on their behalf','We provide advice only and the client acts themselves','We hold funds or manage assets','We do a combination of the above']};
+      }
       if (parsed.type === 'result') renderCheckerResult(parsed);
       else { checkerState.questions.push(parsed); renderCheckerQ(parsed, false); }
     })
