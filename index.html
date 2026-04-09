@@ -412,7 +412,7 @@ function runCheckerQuestion() {
     msgs.push({role:'user', content: 'Answer: ' + checkerState.answers[i]});
   }
   if (checkerState.qNum >= 5) msgs.push({role:'user', content:'You have enough information. Provide the final result JSON now.'});
-  fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({model:'claude-sonnet-4-20250514', max_tokens:800, system:sys, messages:msgs})})
+  fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({model:'claude-sonnet-4-5', max_tokens:800, system:sys, messages:msgs})})
     .then(function(r) { return r.json(); })
     .then(function(data) {
       var text = (data.content && data.content[0]) ? data.content[0].text : '{}';
@@ -440,7 +440,7 @@ function renderCheckerQ(q, isBack) {
   }).join('');
   document.getElementById('checker-content').innerHTML =
     '<div class="q-card"><div class="q-step">Question ' + checkerState.qNum + ' of ~6</div>' +
-    '<div class="q-text">' + (q.question || '') + '</div>' +
+    '<div class="q-text">' + (q.question || q.text || q.content || '') + '</div>' +
     '<div class="q-opts">' + oh + '</div></div>' +
     '<div style="font-size:12px;color:#6b7280;margin-top:0.5rem;">Assessing: ' + checkerState.desc.substring(0, 90) + (checkerState.desc.length > 90 ? '...' : '') + '</div>';
 }
