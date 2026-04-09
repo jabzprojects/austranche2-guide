@@ -417,24 +417,24 @@ function runCheckerQuestion() {
     .then(function(data) {
       var parsed = null;
       var rawText = '';
-      if (data.parsed && data.parsed.type) {
-        parsed = data.parsed;
+      if (data.content && data.content[0] && data.content[0].text) {
+        rawText = data.content[0].text;
       } else if (data.raw) {
         rawText = data.raw;
-      } else if (data.content && data.content[0] && data.content[0].text) {
-        rawText = data.content[0].text;
+      } else if (data.parsed && data.parsed.type) {
+        parsed = data.parsed;
       }
       if (!parsed && rawText) {
-        var clean = rawText.replace(/^\s*```json\s*/i,'').replace(/^\s*```\s*/i,'').replace(/\s*```\s*$/i,'').trim();
-        var firstBrace = clean.indexOf('{');
-        var lastBrace = clean.lastIndexOf('}');
+        var work = rawText.trim();
+        var firstBrace = work.indexOf('{');
+        var lastBrace = work.lastIndexOf('}');
         if (firstBrace !== -1 && lastBrace !== -1) {
-          clean = clean.substring(firstBrace, lastBrace + 1);
+          work = work.substring(firstBrace, lastBrace + 1);
         }
-        try { parsed = JSON.parse(clean); } catch(e) { parsed = null; }
+        try { parsed = JSON.parse(work); } catch(e) { parsed = null; }
       }
       if (!parsed || !parsed.type) {
-        document.getElementById('checker-content').innerHTML = '<div class="q-card"><p style="font-size:14px;color:#6b7280;">Unable to process response. Please start again.</p></div><button class="btn-secondary" style="margin-top:0.75rem;" onclick="initChecker()">Start again</button>';
+        document.getElementById('checker-content').innerHTML = '<div class="q-card"><p style="font-size:14px;color:#6b7280;">Sorry, something went wrong. Raw response: ' + (rawText ? rawText.substring(0, 200) : JSON.stringify(data).substring(0, 200)) + '</p></div><button class="btn-secondary" style="margin-top:0.75rem;" onclick="initChecker()">Start again</button>';
         return;
       }
       if (parsed.type === 'result') renderCheckerResult(parsed);
