@@ -416,17 +416,26 @@ function runCheckerQuestion() {
     .then(function(r) { return r.json(); })
     .then(function(data) {
       var parsed = null;
-      if (data.parsed) {
+      var rawText = '';
+      if (data.parsed && data.parsed.type) {
         parsed = data.parsed;
-      } else {
-        var text = (data.content && data.content[0]) ? data.content[0].text : '';
-        if (text) {
-          var clean = text.replace(/```json[\s\S]*?```|```/gi, '').trim();
-          try { parsed = JSON.parse(clean); } catch(e) { parsed = null; }
+      } else if (data.raw) {
+        rawText = data.raw;
+      } else if (data.content && data.content[0] && data.content[0].text) {
+        rawText = data.content[0].text;
+      }
+      if (!parsed && rawText) {
+        var clean = rawText.replace(/^\s*```json\s*/i,'').replace(/^\s*```\s*/i,'').replace(/\s*```\s*$/i,'').trim();
+        var firstBrace = clean.indexOf('{');
+        var lastBrace = clean.lastIndexOf('}');
+        if (firstBrace !== -1 && lastBrace !== -1) {
+          clean = clean.substring(firstBrace, lastBrace + 1);
         }
+        try { parsed = JSON.parse(clean); } catch(e) { parsed = null; }
       }
       if (!parsed || !parsed.type) {
-        parsed = {type:'question', question:'Can you clarify what specific tasks your practice performs for clients in connection with this work?', options:['We prepare and execute documents on their behalf','We provide advice only and the client acts themselves','We hold funds or manage assets','We do a combination of the above']};
+        document.getElementById('checker-content').innerHTML = '<div class="q-card"><p style="font-size:14px;color:#6b7280;">Unable to process response. Please start again.</p></div><button class="btn-secondary" style="margin-top:0.75rem;" onclick="initChecker()">Start again</button>';
+        return;
       }
       if (parsed.type === 'result') renderCheckerResult(parsed);
       else { checkerState.questions.push(parsed); renderCheckerQ(parsed, false); }
