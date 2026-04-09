@@ -13,10 +13,18 @@ export default async function handler(req, res) {
       body: JSON.stringify(req.body)
     });
     const data = await response.json();
-    console.log('Anthropic response:', JSON.stringify(data));
+    if (data.content && data.content[0] && data.content[0].text) {
+      const raw = data.content[0].text;
+      const clean = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '').trim();
+      try {
+        const parsed = JSON.parse(clean);
+        return res.status(200).json({ parsed: parsed });
+      } catch(e) {
+        return res.status(200).json({ raw: raw, parseError: e.message });
+      }
+    }
     res.status(200).json(data);
   } catch (error) {
-    console.log('Error:', error.message);
     res.status(500).json({ error: 'Request failed', detail: error.message });
   }
 }
