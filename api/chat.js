@@ -15,15 +15,19 @@ export default async function handler(req, res) {
     const data = await response.json();
     if (data.content && data.content[0] && data.content[0].text) {
       const raw = data.content[0].text;
-      const clean = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '').trim();
+      const clean = raw
+        .replace(/^\s*```json\s*/i, '')
+        .replace(/^\s*```\s*/i, '')
+        .replace(/\s*```\s*$/i, '')
+        .trim();
       try {
         const parsed = JSON.parse(clean);
-        return res.status(200).json({ parsed: parsed });
+        return res.status(200).json({ parsed });
       } catch(e) {
-        return res.status(200).json({ raw: raw });
+        return res.status(200).json({ raw });
       }
     }
-    res.status(200).json(data);
+    return res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ error: 'Request failed', detail: error.message });
   }
