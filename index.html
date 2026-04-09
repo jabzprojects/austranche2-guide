@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AML/CTF Compliance Guide for Lawyers and Conveyancers</title>
+<title>AML/CTF Compliance Guide for Australian Lawyers and Conveyancers</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a;background:#fff}
@@ -132,11 +132,11 @@ textarea:focus{outline:none;border-color:#3b82f6}
 <body>
 <div id="overlay" class="overlay">
   <div class="modal">
-    <div class="modal-badge">Beta — AI Assisted</div>
+    <div class="modal-badge">AI Assisted</div>
     <h2>AUSTRAC AML/CTF Compliance Guide</h2>
     <p>This tool assists lawyers and conveyancers in understanding their AML/CTF Tranche 2 obligations. Please read and acknowledge the following before proceeding.</p>
     <ul>
-      <li>This is a <strong>beta service</strong> facilitated by artificial intelligence.</li>
+      <li>This service is facilitated by <strong>artificial intelligence</strong>.</li>
       <li>AI can and does make mistakes. All information must be <strong>independently verified</strong> against official AUSTRAC guidance and legislation.</li>
       <li>This tool is for <strong>information purposes only</strong> and does not constitute legal advice.</li>
       <li>You must not solely rely on this tool when making decisions about AUSTRAC compliance or your professional obligations.</li>
@@ -144,7 +144,7 @@ textarea:focus{outline:none;border-color:#3b82f6}
     </ul>
     <label class="modal-checkbox">
       <input type="checkbox" id="ack" onchange="document.getElementById('proceed').disabled=!this.checked">
-      <span>I acknowledge this is a beta AI assisted information tool. I will independently verify all information and understand this does not constitute legal advice.</span>
+      <span>I acknowledge this is an AI assisted information tool. I will independently verify all information and understand this does not constitute legal advice.</span>
     </label>
     <button class="btn-proceed" id="proceed" disabled onclick="document.getElementById('overlay').style.display='none'">I acknowledge — continue</button>
   </div>
@@ -152,7 +152,7 @@ textarea:focus{outline:none;border-color:#3b82f6}
 <div class="app">
   <div id="home" class="flow-screen active">
     <div class="home-header">
-      <h1>AML/CTF Compliance Guide for Lawyers and Conveyancers</h1>
+      <h1>AML/CTF Compliance Guide for Australian Lawyers and Conveyancers</h1>
       <p>New Tranche 2 obligations under the AML/CTF Act apply from 1 July 2026. Use this guide to understand whether your practice is captured, what you need to do and which forms to complete. Select a topic below to begin.</p>
     </div>
     <div class="action-grid">
@@ -405,14 +405,20 @@ function runCheckerQuestion() {
   document.getElementById('checker-step-label').textContent = checkerState.qNum === 0 ? 'Analysing...' : 'Question ' + (checkerState.qNum + 1) + ' of ~6';
   document.getElementById('checker-pct').textContent = checkerState.qNum > 0 ? pct + '%' : '';
   document.getElementById('checker-content').innerHTML = '<div class="loading-wrap"><div class="loading-dots"><span></span><span></span><span></span></div><span style="font-size:13px;color:#6b7280;">Analysing your service...</span></div>';
-  var sys = 'You are an expert AML/CTF compliance adviser for Australia\'s Tranche 2 reforms. You should use Australian English only. You should not use oxford commas i.e. the commans before "and", "but" and "or". You should not use any em dashes or hyphens. Ask structured questions ONE AT A TIME (maximum 6) to determine whether a service triggers any Table 6 item under s 6(5B) of the AML/CTF Act (from 1 July 2026).\n\nTable 6 items:\n1. Assisting to sell, buy or transfer real estate\n2. Assisting with a transaction involving a business, assets or legal arrangement\n3. Receiving, holding, controlling or managing a person\'s property as part of a transaction\n4. Assisting with equity or debt financing for a body corporate or legal arrangement\n5. Creating, selling or transferring a shelf company\n6. Assisting with the creation or restructuring of a body corporate or legal arrangement\n7. Acting as, or arranging for someone to act as, director, secretary, attorney, trustee, partner or similar\n8. Acting as, or arranging for someone to act as, a nominee shareholder\n9. Providing a registered office or principal place of business address for an entity\n\nKey rules:\n- Must be to an external client (not in-house)\n- Must have geographical link to Australia\n- Must be in the course of carrying on a business\n- Court-ordered services (after the order) excluded for items 1 and 2\n- General or hypothetical advice not directly advancing a transaction is NOT captured\n- Dispute resolution determining only past events is NOT captured\n\nUse Australian English. Do not use em dashes or hyphens. Do not use Oxford commas.\n\nReturn ONLY valid JSON, no markdown fences, no preamble.\n\nFor a question: {"type":"question","question":"...","options":["A","B","C"]}\nFor final result: {"type":"result","captured":true,"items":["Item N: description"],"reasoning":"explanation","notCapturedReason":"if not captured","nextSteps":["step 1","step 2"]}';
-  var msgs = [{role:'user', content:'Service: ' + checkerState.desc}];
+  var sys = 'You are an expert AML/CTF compliance adviser for Australia\'s Tranche 2 reforms. You should use Australian English only. You should not use oxford commas i.e. the commas before "and", "but" and "or". You should not use any em dashes or hyphens. Ask structured questions ONE AT A TIME (maximum 6) to determine whether a service triggers any Table 6 item under s 6(5B) of the AML/CTF Act (from 1 July 2026).\n\nTable 6 items:\n1. Assisting to sell, buy or transfer real estate\n2. Assisting with a transaction involving a business, assets or legal arrangement\n3. Receiving, holding, controlling or managing a person\'s property as part of a transaction\n4. Assisting with equity or debt financing for a body corporate or legal arrangement\n5. Creating, selling or transferring a shelf company\n6. Assisting with the creation or restructuring of a body corporate or legal arrangement\n7. Acting as, or arranging for someone to act as, director, secretary, attorney, trustee, partner or similar\n8. Acting as, or arranging for someone to act as, a nominee shareholder\n9. Providing a registered office or principal place of business address for an entity\n\nKey rules:\n- Must be to an external client (not in-house)\n- Must have geographical link to Australia\n- Must be in the course of carrying on a business\n- Court-ordered services (after the order) excluded for items 1 and 2\n- General or hypothetical advice not directly advancing a transaction is NOT captured\n- Dispute resolution determining only past events is NOT captured\n\nUse Australian English. Do not use em dashes or hyphens. Do not use Oxford commas.\n\nReturn ONLY valid JSON, no markdown fences, no preamble.\n\nFor a question: {"type":"question","question":"...","options":["A","B","C"]}\nFor final result: {"type":"result","captured":true,"items":["Item N: description"],"reasoning":"explanation","notCapturedReason":"if not captured","nextSteps":["step 1","step 2"]}';
+  // Security: validate inputs
+  var safeDesc = checkerState.desc.substring(0, 500);
+  if (checkerState.questions.length > 8) {
+    document.getElementById('checker-content').innerHTML = '<div class="q-card"><p style="font-size:14px;color:#6b7280;">Assessment limit reached. Please start a new assessment.</p></div><button class="btn-secondary" style="margin-top:0.75rem;" onclick="initChecker()">Start again</button>';
+    return;
+  }
+  var msgs = [{role:'user', content:'Service: ' + safeDesc}];
   for (var i = 0; i < checkerState.questions.length; i++) {
     msgs.push({role:'assistant', content: JSON.stringify({type:'question', question: checkerState.questions[i].question || checkerState.questions[i].text || '', options: checkerState.questions[i].options || []})});
     msgs.push({role:'user', content: 'Answer: ' + checkerState.answers[i]});
   }
   if (checkerState.qNum >= 5) msgs.push({role:'user', content:'You have enough information. Provide the final result JSON now.'});
-  fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({model:'claude-sonnet-4-5-20250929', max_tokens:800, system:sys, messages:msgs})})
+  fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json','x-app-token':'47a88f17e3a9dd663c22a8f33b168bb77bffd8dd9c164c34'}, body: JSON.stringify({model:'claude-sonnet-4-5-20250929', max_tokens:800, system:sys, messages:msgs})})
     .then(function(r) { return r.json(); })
     .then(function(data) {
       var parsed = null;
