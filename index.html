@@ -127,6 +127,30 @@ textarea:focus{outline:none;border-color:#3b82f6}
 .form-tag.risk{background:#ede9fe;color:#5b21b6}
 .form-row-dl{font-size:11px;color:#2563eb;flex-shrink:0;white-space:nowrap;transition:color 0.15s}
 .no-results{font-size:13px;color:#6b7280;padding:1.5rem 0;text-align:center}
+.action-grid{grid-template-columns:repeat(2,1fr)}
+@media(max-width:480px){.action-grid{grid-template-columns:1fr}}
+.tl-date{width:112px}
+.tc-note{font-size:12px;color:#6b7280;line-height:1.5;margin-top:0.6rem}
+.tc-note a{color:#2563eb}
+.ob-intro{font-size:13px;color:#6b7280;line-height:1.6;margin-bottom:1rem}
+.ob-card{border:1px solid #e5e7eb;background:#fff;margin-bottom:6px}
+.ob-card summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;transition:background 0.15s}
+.ob-card summary::-webkit-details-marker{display:none}
+.ob-card summary:hover{background:#eff6ff}
+.ob-card summary:hover .ob-title{color:#1d4ed8}
+.ob-title{font-size:14px;font-weight:500;line-height:1.4;transition:color 0.15s}
+.ob-sum{font-size:12px;color:#6b7280;line-height:1.5;margin-top:2px}
+.ob-plus{font-size:16px;color:#6b7280;flex-shrink:0;line-height:1.2}
+.ob-card[open] .ob-plus{transform:rotate(45deg)}
+.ob-card[open] summary{border-bottom:1px solid #e5e7eb}
+.ob-body{padding:12px 14px 14px}
+.ob-body p{font-size:13px;line-height:1.65;margin-bottom:0.6rem}
+.ob-body ul{padding-left:1.2rem;margin-bottom:0.6rem}
+.ob-body li{font-size:13px;line-height:1.65;color:#374151;margin-bottom:0.2rem}
+.ob-links{border-top:1px solid #f3f4f6;padding-top:0.6rem;margin-top:0.4rem}
+.ob-links a{display:block;font-size:12px;color:#2563eb;margin-bottom:0.25rem}
+.caution{background:#fef3c7;border:1px solid #f59e0b}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem}
 </style>
 </head>
 <body>
@@ -146,26 +170,31 @@ textarea:focus{outline:none;border-color:#3b82f6}
       <input type="checkbox" id="ack" onchange="document.getElementById('proceed').disabled=!this.checked">
       <span>I acknowledge this is an AI assisted information tool. I will independently verify all information and understand this does not constitute legal advice.</span>
     </label>
-    <button class="btn-proceed" id="proceed" disabled onclick="document.getElementById('overlay').style.display='none'">I acknowledge — continue</button>
+    <button class="btn-proceed" id="proceed" disabled onclick="document.getElementById('overlay').style.display='none'">I acknowledge and continue</button>
   </div>
 </div>
 <div class="app">
   <div id="home" class="flow-screen active">
     <div class="home-header">
       <h1>AML/CTF Compliance Guide for Australian Lawyers and Conveyancers</h1>
-      <p>New Tranche 2 obligations under the AML/CTF Act apply from 1 July 2026. Use this guide to understand whether your practice is captured, what you need to do and which forms to complete. Select a topic below to begin.</p>
+      <p>Tranche 2 obligations under the AML/CTF Act now apply to lawyers and conveyancers who provide designated services. Use this guide to check whether your practice is captured, what you need to do, what you must keep doing and which forms to use. Select a topic below to begin.</p>
     </div>
     <div class="action-grid">
-      <button class="action-card" onclick="startFlow('setup')"><div class="ac-title">Initial setup</div><div class="ac-desc">Registration, enrolment and program requirements</div></button>
-      <button class="action-card" onclick="startFlow('checker')"><div class="ac-title">Designated service checker</div><div class="ac-desc">Check if your service triggers Tranche 2 obligations</div></button>
-      <button class="action-card" onclick="startFlow('forms')"><div class="ac-title">Forms and documents</div><div class="ac-desc">Download AUSTRAC forms for your practice</div></button>
+      <button class="action-card" onclick="startFlow('setup')"><div class="ac-title">Initial setup</div><div class="ac-desc">Whether you are captured, enrolment and your AML/CTF program</div></button>
+      <button class="action-card" onclick="startFlow('checker')"><div class="ac-title">Designated service checker</div><div class="ac-desc">Check whether a specific service triggers Tranche 2 obligations</div></button>
+      <button class="action-card" onclick="startFlow('ongoing')"><div class="ac-title">Ongoing obligations</div><div class="ac-desc">Reporting, privilege, existing clients, annual report and evaluation</div></button>
+      <button class="action-card" onclick="startFlow('forms')"><div class="ac-title">Forms and documents</div><div class="ac-desc">Download current AUSTRAC starter kit forms</div></button>
     </div>
     <div class="timeline-card">
-      <div class="tc-title">Key dates</div>
-      <div class="tl-row"><div class="tl-dot blue"></div><div class="tl-date">31 Mar 2026</div><div class="tl-text">Enrolment portal opens with AUSTRAC</div></div>
-      <div class="tl-row"><div class="tl-dot amber"></div><div class="tl-date">1 Jul 2026</div><div class="tl-text">AML/CTF obligations formally commence</div></div>
-      <div class="tl-row"><div class="tl-dot amber"></div><div class="tl-date">29 Jul 2026</div><div class="tl-text">Deadline to have enrolled as a Tranche 2 entity</div></div>
-      <div class="tl-row"><div class="tl-dot green"></div><div class="tl-date">Ongoing</div><div class="tl-text">Notify AUSTRAC within 14 days of any change to services or key personnel</div></div>
+      <div class="tc-title">Key timeframes</div>
+      <div class="tl-row"><div class="tl-dot amber"></div><div class="tl-date">28 days</div><div class="tl-text">Enrol with AUSTRAC no later than 28 days after you start providing a designated service</div></div>
+      <div class="tl-row"><div class="tl-dot amber"></div><div class="tl-date">14 days</div><div class="tl-text">Update your enrolment details after a change to your business or designated services</div></div>
+      <div class="tl-row"><div class="tl-dot blue"></div><div class="tl-date">24 hours</div><div class="tl-text">Suspicious matter report where the suspicion relates to terrorism financing</div></div>
+      <div class="tl-row"><div class="tl-dot blue"></div><div class="tl-date">3 business days</div><div class="tl-text">Any other suspicious matter report (5 business days if you claim legal professional privilege)</div></div>
+      <div class="tl-row"><div class="tl-dot blue"></div><div class="tl-date">10 business days</div><div class="tl-text">Threshold transaction report for $10,000 or more in physical currency</div></div>
+      <div class="tl-row"><div class="tl-dot green"></div><div class="tl-date">1 Jul to 30 Sep</div><div class="tl-text">Annual compliance report for the previous financial year</div></div>
+      <div class="tl-row"><div class="tl-dot green"></div><div class="tl-date">2029 to 2030</div><div class="tl-text">First independent evaluation of your program, with the due date set by your AUSTRAC Account Number</div></div>
+      <div class="tc-note">Current as at November 2026. Details and AUSTRAC links are under <a href="#" onclick="startFlow('ongoing');return false;">Ongoing obligations</a>.</div>
     </div>
     <div class="support-footer">This service is free to use but it is not free to run. If you find it useful, <a href="https://buymeacoffee.com/jabranthelawyer" target="_blank">donate here</a> to help keep it going.</div>
   </div>
@@ -195,6 +224,14 @@ textarea:focus{outline:none;border-color:#3b82f6}
     <div id="checker-content"></div>
     <div class="support-footer">This service is free to use but it is not free to run. If you find it useful, <a href="https://buymeacoffee.com/jabranthelawyer" target="_blank">buy me a coffee</a> to help keep it going.</div>
   </div>
+  <div id="flow-ongoing" class="flow-screen">
+    <div class="flow-header">
+      <span class="flow-title">Ongoing obligations</span>
+      <button class="btn-nav" onclick="goHome()">Home</button>
+    </div>
+    <div id="ongoing-content"></div>
+    <div class="support-footer">This service is free to use but it is not free to run. If you find it useful, <a href="https://buymeacoffee.com/jabranthelawyer" target="_blank">buy me a coffee</a> to help keep it going.</div>
+  </div>
   <div id="flow-forms" class="flow-screen">
     <div class="flow-header">
       <span class="flow-title">Forms and documents</span>
@@ -205,394 +242,494 @@ textarea:focus{outline:none;border-color:#3b82f6}
   </div>
 </div>
 <script>
+var AS_AT = 'November 2026';
+var APP_TOKEN = '47a88f17e3a9dd663c22a8f33b168bb77bffd8dd9c164c34';
 var TICK = '<svg class="cb-tick" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+var A = 'https://www.austrac.gov.au';
+var OG = A + '/industry-and-business/obligations-and-guidance';
+var L = {
+  enrol: A + '/new-austrac/enrol-us/enrol-us-overview',
+  enrolPrep: A + '/new-austrac/enrol-us/preparing-our-new-enrolment-forms',
+  austracOnline: 'https://online.apps.austrac.gov.au/',
+  removal: A + '/industry-and-business/austrac-online/request-removal-our-roll-or-registers',
+  pds: A + '/new-austrac/designated-services-newly-regulated-entities/professional-designated-services',
+  check: A + '/new-austrac/check-if-you-may-be-regulated',
+  geo: A + '/new-austrac/geographical-link-requirement',
+  who: A + '/new-austrac/who-and-what-we-regulate',
+  co: OG + '/your-amlctf-program/develop-your-amlctf-programs/step-1-establish-your-governance-framework/amlctf-compliance-officer',
+  legalKitStart: OG + '/program-starter-kits/legal-profession-program-starter-kit/legal-profession-program-starter-kit-getting-started',
+  convKitStart: OG + '/program-starter-kits/conveyancer-program-starter-kit/conveyancing-program-starter-kit-getting-started',
+  legalKitLib: OG + '/program-starter-kits/legal-profession-program-starter-kit/legal-profession-program-starter-kit-document-library',
+  convKitLib: OG + '/program-starter-kits/conveyancer-program-starter-kit/conveyancing-program-starter-kit-document-library',
+  legalKitUpd: OG + '/program-starter-kits/legal-profession-program-starter-kit/updates-legal-profession-program-starter-kit',
+  convKitUpd: OG + '/program-starter-kits/conveyancer-program-starter-kit/updates-conveyancer-program-starter-kit',
+  cdd: OG + '/your-amlctf-program/customer-due-diligence/initial-customer-due-diligence/overview-initial-customer-due-diligence',
+  ongoingCdd: OG + '/your-amlctf-program/customer-due-diligence/ongoing-customer-due-diligence',
+  existing: OG + '/your-amlctf-program/customer-due-diligence/transitioning-existing-customers',
+  smr: OG + '/your-amlctf-program/reporting-us/suspicious-matter-reports',
+  ttr: OG + '/your-amlctf-program/reporting-us/threshold-transaction-reports',
+  lpp: OG + '/your-amlctf-program/reporting-us/legal-professional-privilege',
+  tippingOff: OG + '/your-amlctf-program/reporting-us/tipping-off',
+  acr: OG + '/your-amlctf-program/reporting-us/annual-compliance-reports',
+  acrGuide: A + '/industry-and-business/austrac-online/austrac-online-guides-and-resources/austrac-online-user-guides/user-guide-compliance-reports',
+  records: OG + '/your-amlctf-program/develop-your-amlctf-programs/record-keeping/record-keeping-overview',
+  evaluation: OG + '/your-amlctf-program/develop-your-amlctf-programs/step-5-conduct-independent-evaluation',
+  transRules: A + '/about-us/legislation/updates-legislation/amlctf-transitional-rules-2026',
+  indicators: A + '/industry-and-business/education-and-resources/publications-and-resources/risk-insights-and-indicators-suspicious-activity-legal-professionals'
+};
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+function linkList(links) {
+  return '<ul>' + links.map(function(l) { return '<li><a href="' + l[1] + '" target="_blank">' + l[0] + '</a></li>'; }).join('') + '</ul>';
+}
+function disclaimer(extra) {
+  return '<div class="disclaimer" style="margin-top:1rem;">' + (extra || 'Disclaimer') + ': based on AUSTRAC guidance current as at ' + AS_AT + '. Verify at <a href="https://www.austrac.gov.au" target="_blank">austrac.gov.au</a>. Not legal advice.</div>';
+}
 
 function goHome() {
   document.querySelectorAll('.flow-screen').forEach(function(s) { s.classList.remove('active'); });
   document.getElementById('home').classList.add('active');
+  window.scrollTo(0, 0);
 }
-
 function startFlow(name) {
   document.querySelectorAll('.flow-screen').forEach(function(s) { s.classList.remove('active'); });
   document.getElementById('flow-' + name).classList.add('active');
+  window.scrollTo(0, 0);
   if (name === 'setup') initSetup();
   else if (name === 'checker') initChecker();
+  else if (name === 'ongoing') renderOngoing();
   else renderForms();
 }
 
-var setupHistory = [], setupAnswers = [], setupMultiSelected = [];
+/* ---------- Initial setup ---------- */
 
-var setupSteps = [
-  {id:0,step:'Step 1 of 7',pct:14,q:'Does your practice provide legal services to external clients?',sub:'AML/CTF Tranche 2 obligations apply to services provided to external clients in the course of carrying on a business. In-house lawyers who advise only their own employer are generally not captured as a reporting entity.',opts:['Yes, we provide services to external clients','No, I only advise my own employer (in-house)'],next:[1,'exit-inhouse']},
-  {id:1,step:'Step 2 of 7',pct:28,q:'Is there a geographical link to Australia?',sub:'A geographical link is required for AML/CTF obligations to apply. This is satisfied if the service is provided in Australia, the customer is in Australia, or the entity providing the service is an Australian registered company or partnership.',opts:['Yes, there is a geographical link to Australia','No, no connection to Australia'],next:[2,'exit-nogeo']},
-  {id:2,step:'Step 3 of 7',pct:42,q:'Which of the following services does your practice provide to clients?',sub:'These correspond to the Table 6 designated services under s 6(5B) of the AML/CTF Act. Select all that apply to your practice then click Continue.',multi:true,opts:['Conveyancing, including buying, selling or transferring real estate on behalf of clients','Business or corporate transactions including business sales, acquisitions or restructures','Holding or managing client property or funds as part of a transaction','Equity or debt financing for a company or trust','Creating or restructuring companies, trusts or other legal arrangements','Acting as director, trustee, partner, attorney or nominee shareholder','Providing a registered office or principal place of business address for an entity'],noneOpt:'None of the above, including litigation, family law, criminal law or similar advisory work only',next:[3,3,3,3,3,3,3,'exit-nodesignated']},
-  {id:3,step:'Step 4 of 7',pct:57,q:'Are these services provided in the course of carrying on a business?',sub:'AUSTRAC takes a broad view of "business". A service may be captured even if it is a one-off matter, provided at a low fee or free of charge, or performed infrequently, as long as it is connected to the conduct of a business. Free conveyancing for a family member, for example, is likely still captured.',opts:['Yes, these services are connected to my practice as a business','No, these are entirely private non-business activities'],next:[4,'exit-nobusiness']},
-  {id:4,step:'Step 5 of 7',pct:71,q:'Is the service being provided solely pursuant to a court or tribunal order that has already been made?',sub:'Services provided after a court or tribunal order is made are excluded from Table 6 items 1 and 2. This exclusion does not apply to services provided to obtain that order. Dispute resolution that only determines past events is generally also not captured.',opts:['No, this is a transactional or advisory matter','Yes, acting solely pursuant to an existing court or tribunal order'],next:[5,'exit-courtorder']},
-  {id:5,step:'Step 6 of 7',pct:85,q:'Does your practice also provide conveyancing services separately from your general legal work?',sub:'Mixed practices that provide both legal and conveyancing designated services must maintain two separate risk assessments: one from the Legal Profession program and one from the Conveyancing program.',opts:['Yes, we provide both legal and conveyancing services','No, legal services only','No, conveyancing services only'],next:[6,6,6]},
-  {id:6,step:'Step 7 of 7',pct:100,q:'How many personnel does your practice have, including legal and administrative staff?',sub:'The AUSTRAC Legal Profession Program Starter Kit is designed for practices of 15 or fewer personnel. If your practice is larger, the Starter Kit can still be used as a reference but you will need to develop a more comprehensive tailored program.',opts:['1 to 15 personnel','More than 15 personnel'],next:['result-setup','result-setup-large']}
+var KIT_CRITERIA = [
+  'We only provide designated services that are professional services (table 6), such as conveyancing and services relating to companies, trusts and other legal arrangements',
+  'We have 15 or fewer personnel, counting administrative staff as well as legal practitioners',
+  'Some or all of the people providing our designated services work under a legal practising certificate',
+  'Most of our clients are individuals who are Australian residents (companies, trusts and overseas residents are less common)',
+  'We do not regularly deal with high risk clients',
+  'We do not help clients buy, sell or transfer overseas property',
+  'We do not offer fully remote self service options that let clients obtain designated services without dealing with our people',
+  'We do not sell property we own ourselves (for example as a property developer)',
+  'We are not acquiring all or part of another practice and are not taking on clients transferred from another practice',
+  'We are not part of a large reporting group, foreign branch or subsidiary'
 ];
 
+var setupSteps = [
+  {q:'Does your practice provide legal or conveyancing services to external clients?',
+   sub:'Table 6 designated services must be provided to a customer. In house lawyers who advise only their own employer are generally not providing designated services. Services provided to a member of your own business group are also excluded.',
+   opts:['Yes, we provide services to external clients','No, I only advise my own employer (in house)'], next:[1,'exit-inhouse']},
+  {q:'Is there a geographical link to Australia?',
+   sub:'AML/CTF obligations only apply to designated services with a geographical link to Australia. The link exists if you provide the service at or through a permanent establishment in Australia, such as an office or branch. It also exists if you are an Australian resident, or a subsidiary of an Australian resident company, providing the service through a permanent establishment overseas. Having Australian clients does not by itself create the link.',
+   opts:['Yes, there is a geographical link to Australia','No, there is no geographical link to Australia'], next:[2,'exit-nogeo']},
+  {q:'Which of the following services does your practice provide to clients?',
+   sub:'These are the nine table 6 designated services in subsection 6(5B) of the AML/CTF Act. A service is only captured where your work directly advances a current or future transaction or the creation or restructure of an entity. General advice is not enough. Tick all that apply.',
+   multi:true, none:true,
+   opts:[
+     'Conveyancing: helping to buy, sell or transfer real estate, including leases of more than 30 years (item 1)',
+     'Helping to buy, sell or transfer a controlling interest in a company, trust or other legal arrangement (item 2)',
+     'Receiving, holding or managing client money or property, including trust account money, as part of a transaction (item 3)',
+     'Organising equity or debt financing for a company, trust or other legal arrangement (item 4)',
+     'Selling or transferring shelf companies (item 5)',
+     'Creating or restructuring companies, trusts or other legal arrangements, including drafting constitutions or trust deeds (item 6)',
+     'Acting as, or arranging for someone to act as, a director, secretary, attorney, partner or trustee for an entity or arrangement (item 7)',
+     'Acting as, or arranging for someone to act as, a nominee shareholder (item 8)',
+     'Providing a registered office or principal place of business address for an entity (item 9)'
+   ],
+   noneOpt:'None of the above, for example litigation, criminal law, family law, employment law, wills or general advice only'},
+  {q:'Are these services provided in the course of carrying on a business?',
+   sub:'AUSTRAC takes a broad view of business. A service can be captured even if it is a one off matter, is not your main activity or is provided free or pro bono, as long as it furthers your business. Free conveyancing for a family member, for example, is likely captured.',
+   opts:['Yes, these services are part of my practice','No, these are entirely private activities outside any business'], next:[4,'exit-nobusiness']},
+  {q:'Is the service provided solely to carry out a court or tribunal order that has already been made?',
+   sub:'Transfers of real estate or of entities made under or resulting from a court or tribunal order are excluded from items 1 and 2. The exclusion does not cover work done to obtain the order. Litigation about past events generally falls outside table 6.',
+   opts:['No, this is transactional or advisory work','Yes, we act solely to carry out an existing court or tribunal order'], next:[5,'exit-courtorder']},
+  {q:'Which of these best describes your practice?',
+   sub:'The starter kits include two risk assessments: one for conveyancing and one for other professional services. A mixed practice completes both.',
+   opts:['We provide both conveyancing and other designated services (mixed practice)','We provide other designated services but no conveyancing','We provide conveyancing only'], next:[6,6,6]},
+  {q:'Which of these statements are true for your practice?',
+   sub:'AUSTRAC designed its starter kit for small practices that meet all ten of these characteristics. Tick each statement that is true, then click Continue.',
+   multi:true, none:false, opts:KIT_CRITERIA}
+];
+var SETUP_TOTAL = setupSteps.length;
+var setupHistory = [], setupAnswers = {}, setupSel = {};
+
 function initSetup() {
-  setupHistory = []; setupAnswers = []; setupMultiSelected = [];
-  document.getElementById('setup-back-btn').style.display = 'none';
+  setupHistory = []; setupAnswers = {}; setupSel = {};
   renderSetupStep(0);
 }
-
+function setProgress(i) {
+  var pct = Math.round(((i + 1) / SETUP_TOTAL) * 100);
+  document.getElementById('setup-step-label').textContent = 'Step ' + (i + 1) + ' of ' + SETUP_TOTAL;
+  document.getElementById('setup-pct').textContent = pct + '%';
+  document.getElementById('setup-progress').style.width = pct + '%';
+}
 function setupGoBack() {
-  if (setupHistory.length === 0) return;
-  var prev = setupHistory.pop();
-  setupAnswers.pop();
-  renderSetupStep(prev, true);
+  if (!setupHistory.length) return;
+  renderSetupStep(setupHistory.pop());
 }
-
-function renderSetupStep(i, isBack) {
-  if (typeof i === 'string') { renderSetupExit(i); return; }
-  setupMultiSelected = [];
+function renderSetupStep(i) {
   var s = setupSteps[i];
-  document.getElementById('setup-step-label').textContent = s.step;
-  document.getElementById('setup-pct').textContent = s.pct + '%';
-  document.getElementById('setup-progress').style.width = s.pct + '%';
-  document.getElementById('setup-back-btn').style.display = i > 0 ? 'inline-block' : 'none';
+  setProgress(i);
+  document.getElementById('setup-back-btn').style.display = setupHistory.length ? 'inline-block' : 'none';
+  var head = '<div class="q-card"><div class="q-step">Step ' + (i + 1) + ' of ' + SETUP_TOTAL + '</div><div class="q-text">' + s.q + '</div><div class="q-sub">' + s.sub + '</div>';
   if (s.multi) {
-    var itemsHtml = s.opts.map(function(o, idx) {
-      return '<div class="cb-item" id="cb-' + idx + '" onclick="toggleCB(' + idx + ')">' +
-        '<div class="cb-box">' + TICK + '</div><span class="cb-label">' + o + '</span></div>';
+    var sel = setupSel[i] || [];
+    var items = s.opts.map(function(o, idx) {
+      return '<div class="cb-item' + (sel.indexOf(idx) > -1 ? ' selected' : '') + '" id="cb-' + idx + '" onclick="toggleCB(' + i + ',' + idx + ')"><div class="cb-box">' + TICK + '</div><span class="cb-label">' + o + '</span></div>';
     }).join('');
-    var noneHtml = '<div class="cb-item none-item" id="cb-none" onclick="toggleCBNone()">' +
-      '<div class="cb-box">' + TICK + '</div><span class="cb-label">' + s.noneOpt + '</span></div>';
-    document.getElementById('setup-content').innerHTML =
-      '<div class="q-card"><div class="q-step">' + s.step + '</div><div class="q-text">' + s.q + '</div>' +
-      '<div class="q-sub">' + s.sub + '</div><div class="cb-list">' + itemsHtml + noneHtml + '</div></div>' +
-      '<button class="btn-next" id="multi-continue" disabled onclick="confirmMulti(' + i + ')">Continue</button>';
+    if (s.none) items += '<div class="cb-item none-item' + (sel[0] === -1 ? ' selected' : '') + '" id="cb-none" onclick="toggleCB(' + i + ',-1)"><div class="cb-box">' + TICK + '</div><span class="cb-label">' + s.noneOpt + '</span></div>';
+    var disabled = s.none && !sel.length ? ' disabled' : '';
+    document.getElementById('setup-content').innerHTML = head + '<div class="cb-list">' + items + '</div></div><button class="btn-next" id="multi-continue"' + disabled + ' onclick="confirmMulti(' + i + ')">Continue</button>';
   } else {
-    var oh = s.opts.map(function(o, idx) {
-      return '<button class="q-opt" onclick="answerSetup(' + i + ',' + idx + ',\'' + s.next[idx] + '\')">' + o + '</button>';
-    }).join('');
-    document.getElementById('setup-content').innerHTML =
-      '<div class="q-card"><div class="q-step">' + s.step + '</div><div class="q-text">' + s.q + '</div>' +
-      '<div class="q-sub">' + s.sub + '</div><div class="q-opts">' + oh + '</div></div>';
+    var oh = s.opts.map(function(o, idx) { return '<button class="q-opt" onclick="answerSetup(' + i + ',' + idx + ')">' + o + '</button>'; }).join('');
+    document.getElementById('setup-content').innerHTML = head + '<div class="q-opts">' + oh + '</div></div>';
   }
 }
-
-function toggleCB(idx) {
-  var ne = document.getElementById('cb-none');
-  var el = document.getElementById('cb-' + idx);
-  if (!el) return;
-  var pos = setupMultiSelected.indexOf(idx);
-  if (pos > -1) { setupMultiSelected.splice(pos, 1); el.classList.remove('selected'); }
-  else {
-    if (setupMultiSelected[0] === -1) { setupMultiSelected = []; ne.classList.remove('selected'); }
-    setupMultiSelected.push(idx); el.classList.add('selected');
-  }
-  document.getElementById('multi-continue').disabled = setupMultiSelected.length === 0;
-}
-
-function toggleCBNone() {
-  var ne = document.getElementById('cb-none');
-  if (setupMultiSelected[0] === -1) {
-    setupMultiSelected = []; ne.classList.remove('selected');
-    document.getElementById('multi-continue').disabled = true;
+function toggleCB(step, idx) {
+  var s = setupSteps[step];
+  var sel = setupSel[step] || [];
+  if (idx === -1) {
+    sel = sel[0] === -1 ? [] : [-1];
   } else {
-    setupMultiSelected = [-1];
-    setupSteps[2].opts.forEach(function(_, idx) {
-      var el = document.getElementById('cb-' + idx); if (el) el.classList.remove('selected');
-    });
-    ne.classList.add('selected');
-    document.getElementById('multi-continue').disabled = false;
+    if (sel[0] === -1) sel = [];
+    var p = sel.indexOf(idx);
+    if (p > -1) sel.splice(p, 1); else sel.push(idx);
+  }
+  setupSel[step] = sel;
+  s.opts.forEach(function(_, k) { document.getElementById('cb-' + k).classList.toggle('selected', sel.indexOf(k) > -1); });
+  if (s.none) {
+    document.getElementById('cb-none').classList.toggle('selected', sel[0] === -1);
+    document.getElementById('multi-continue').disabled = sel.length === 0;
   }
 }
-
-function confirmMulti(stepIdx) {
-  if (setupMultiSelected.length === 0) return;
-  setupHistory.push(stepIdx);
-  setupAnswers.push({step: stepIdx, selected: setupMultiSelected.slice()});
-  if (setupMultiSelected[0] === -1) renderSetupExit('exit-nodesignated');
-  else renderSetupStep(3);
+function confirmMulti(step) {
+  var sel = setupSel[step] || [];
+  if (setupSteps[step].none && !sel.length) return;
+  setupHistory.push(step);
+  if (step === 2) {
+    if (sel[0] === -1) renderSetupExit('exit-nodesignated');
+    else renderSetupStep(3);
+  } else {
+    renderSetupResult();
+  }
+}
+function answerSetup(step, idx) {
+  setupHistory.push(step);
+  setupAnswers[step] = idx;
+  var next = setupSteps[step].next[idx];
+  if (typeof next === 'string') renderSetupExit(next);
+  else renderSetupStep(next);
 }
 
-function answerSetup(stepIdx, optIdx, next) {
-  setupHistory.push(stepIdx);
-  setupAnswers.push({step: stepIdx, opt: optIdx});
-  if (next === 'result-setup' || next === 'result-setup-large') renderSetupResult(next === 'result-setup-large');
-  else if (typeof next === 'string' && next.startsWith('exit-')) renderSetupExit(next);
-  else renderSetupStep(parseInt(next));
-}
+var REMOVAL_NOTE = '<div class="info-card"><h4>Already enrolled by mistake?</h4><p>If you enrolled with AUSTRAC and then decide you do not provide a designated service, request removal from the Reporting Entities Roll through AUSTRAC Online. While you remain on the Roll you keep obligations such as the annual compliance report.</p><a href="' + L.removal + '" target="_blank">Request removal from our roll or registers</a></div>';
 
 var exitData = {
-  'exit-inhouse': {v:'Tranche 2 obligations do not apply',c:'not-captured',b:'In-house lawyers advising only their own employer are not separately captured as reporting entities under Table 6 of the AML/CTF Act. Your employer itself may be a reporting entity depending on the services it provides but your internal legal team is not separately captured. If your internal legal team sits in a separate legal entity to the employer you advise, you should check the meaning of "control" under s 11 of the AML/CTF Act carefully.',l:[{l:'AUSTRAC — Professional designated services',u:'https://www.austrac.gov.au/new-austrac/designated-services-newly-regulated-entities/professional-designated-services'},{l:'AUSTRAC — Check if you may be regulated',u:'https://www.austrac.gov.au/amlctf-reform/check-if-you-may-be-regulated-reform'}]},
-  'exit-nogeo': {v:'Tranche 2 obligations likely do not apply',c:'not-captured',b:'A geographical link to Australia is a threshold requirement for the AML/CTF Act to apply. If neither you nor your client has any connection to Australia and the service is not provided in or directed to Australia, the Act will not apply. Verify this carefully: if any aspect of the transaction has an Australian connection such as an Australian client, an Australian registered company or Australian property, the geographical link may still be satisfied.',l:[{l:'AUSTRAC — Geographical link requirement',u:'https://www.austrac.gov.au/new-austrac/geographical-link-requirement'},{l:'AUSTRAC — Who and what we regulate',u:'https://www.austrac.gov.au/new-austrac/who-and-what-we-regulate'}]},
-  'exit-nodesignated': {v:'Tranche 2 obligations likely do not apply to those services',c:'not-captured',b:'If your practice provides none of the Table 6 designated services, for example you practise only in litigation, criminal law, family law, employment or other advisory areas that do not involve managing property, creating entities or executing transactions, you are likely not a reporting entity under Tranche 2. Even specialist practices should map all their services carefully. A service is not excluded simply because it is occasional, low-volume or free of charge. Consider whether any non-legal staff in your practice assist with any Table 6 activities.',l:[{l:'AUSTRAC — Professional designated services',u:'https://www.austrac.gov.au/new-austrac/designated-services-newly-regulated-entities/professional-designated-services'},{l:'AUSTRAC — Check if you may be regulated',u:'https://www.austrac.gov.au/amlctf-reform/check-if-you-may-be-regulated-reform'}]},
-  'exit-nobusiness': {v:'These specific activities may not be captured',c:'uncertain',b:'Services provided entirely outside of any business context are not captured by the AML/CTF Act. However AUSTRAC takes a broad view of "business" and any connection to your legal practice, even indirect, means the activity is likely still within scope. Seek specific advice before concluding that an activity falls entirely outside your practice for AML/CTF purposes.',l:[{l:'AUSTRAC — Professional designated services',u:'https://www.austrac.gov.au/new-austrac/designated-services-newly-regulated-entities/professional-designated-services'}]},
-  'exit-courtorder': {v:'This specific service may be excluded',c:'uncertain',b:'Services provided solely pursuant to a court or tribunal order, after that order has been made, are excluded from Table 6 items 1 and 2. This exclusion is narrow. It does not apply to services you provide in order to obtain the order. If any part of your work involves planning or executing a future transaction, even alongside court proceedings, it may remain in scope.',l:[{l:'AUSTRAC — Professional designated services',u:'https://www.austrac.gov.au/new-austrac/designated-services-newly-regulated-entities/professional-designated-services'}]}
+  'exit-inhouse': {v:'Tranche 2 obligations likely do not apply', c:'not-captured',
+    b:'Table 6 designated services must be provided to a customer. In house lawyers who advise only their own employer are generally not providing designated services, and services to a member of your own business group are excluded. Your employer may still be a reporting entity because of the services it provides. If your legal team sits in a separate entity from the one it advises, check the meaning of control in section 11 of the AML/CTF Act and the business group exclusion carefully.',
+    l:[['Professional designated services', L.pds], ['Check if you may be regulated', L.check]], removal:true},
+  'exit-nogeo': {v:'Tranche 2 obligations likely do not apply', c:'not-captured',
+    b:'A geographical link to Australia is a threshold requirement. It exists where you provide the service at or through a permanent establishment in Australia, or where you are an Australian resident, or a subsidiary of an Australian resident company, providing it through a permanent establishment overseas. Having Australian clients, a website or an Australian bank account does not by itself create the link, and an Australian office only counts if work supporting the service happens there. Residency has its own tests (for example, a partnership is resident if any partner is). Check this carefully before concluding the Act does not apply.',
+    l:[['Geographical link requirement', L.geo], ['Who and what we regulate', L.who]], removal:true},
+  'exit-nodesignated': {v:'Tranche 2 obligations likely do not apply to those services', c:'not-captured',
+    b:'If your practice provides none of the nine table 6 services, for example you only practise in litigation, criminal law, family law, employment law or wills, you are likely not a reporting entity. Drafting a will or creating a testamentary trust is not captured. Map every service your practice offers, including occasional, free and low volume work and anything done by non legal staff, because a single designated service is enough.',
+    extra:'<div class="info-card caution"><h4>Holding money in your trust account</h4><p>Holding client money (item 3) is exempt where your practice provides no other designated service and the money is held for payments reasonably incidental to a service that is not a designated service, for example settlement funds in a litigation matter. The exemption is assessed across the whole practice, so it is lost if you provide any other designated service such as conveyancing. It does not apply if the trust account is used as a de facto bank account.</p><a href="' + L.pds + '" target="_blank">Professional designated services</a></div>',
+    l:[['Professional designated services', L.pds], ['Check if you may be regulated', L.check]], removal:true},
+  'exit-nobusiness': {v:'These activities may not be captured', c:'uncertain',
+    b:'Services provided entirely outside any business are not captured. AUSTRAC takes a broad view of business: a single service, a service that is not your main activity and work done free or pro bono are all captured if they further your practice. Seek advice before concluding that an activity falls outside your practice.',
+    l:[['Professional designated services', L.pds]]},
+  'exit-courtorder': {v:'This service may be excluded', c:'uncertain',
+    b:'Real estate and entity transfers made under or resulting from a court or tribunal order are excluded from items 1 and 2. The exclusion is narrow. It does not cover work done to obtain the order or any other table 6 service, such as holding money (item 3) or restructuring an entity (item 6). If part of your work plans or carries out a future transaction, it may still be captured.',
+    l:[['Professional designated services', L.pds]]}
 };
 
 function renderSetupExit(reason) {
   var m = exitData[reason];
+  document.getElementById('setup-back-btn').style.display = 'inline-block';
   document.getElementById('setup-progress').style.width = '100%';
   document.getElementById('setup-pct').textContent = 'Done';
-  document.getElementById('setup-back-btn').style.display = 'inline-block';
   document.getElementById('setup-content').innerHTML =
     '<div class="result-card ' + m.c + '"><h3>' + m.v + '</h3></div>' +
     '<div class="detail-section"><h4>Explanation</h4><p>' + m.b + '</p></div>' +
-    '<div class="detail-section"><h4>Verify at AUSTRAC</h4><ul>' +
-    m.l.map(function(l) { return '<li><a href="' + l.u + '" target="_blank">' + l.l + '</a></li>'; }).join('') +
-    '</ul></div><div style="margin-top:1rem;"><button class="btn-secondary" onclick="initSetup()">Start again</button></div>' +
-    '<div class="disclaimer" style="margin-top:1rem;">AI disclaimer: based on AUSTRAC guidance as at January 2026. Verify at <a href="https://www.austrac.gov.au" target="_blank">austrac.gov.au</a>. Not legal advice.</div>';
+    (m.extra || '') + (m.removal ? REMOVAL_NOTE : '') +
+    '<div class="detail-section" style="margin-top:0.75rem;"><h4>Verify at AUSTRAC</h4>' + linkList(m.l) + '</div>' +
+    '<div class="btn-row"><button class="btn-secondary" onclick="initSetup()">Start again</button><button class="btn-secondary" onclick="startFlow(\'checker\')">Check a specific service</button></div>' +
+    disclaimer('AI disclaimer: this guide uses AI and may contain errors.');
 }
 
-function renderSetupResult(large) {
-  var mixed = setupAnswers.some(function(a) { return a.step === 5 && a.opt === 0; });
-  document.getElementById('setup-pct').textContent = 'Done';
+function formUrl(kit, name) {
+  for (var i = 0; i < allForms.length; i++) {
+    if (allForms[i].tags[0] === kit && allForms[i].name === name) return allForms[i].url;
+  }
+  return kit === 'For Conveyancers' ? L.convKitLib : L.legalKitLib;
+}
+
+function renderSetupResult() {
   document.getElementById('setup-back-btn').style.display = 'inline-block';
-  var sn = large
-    ? 'Your practice has more than 15 personnel. The AUSTRAC Legal Profession Program Starter Kit is designed for practices of up to 15 personnel. You can use it as a reference foundation but should develop a more comprehensive tailored program, ideally with specialist AML/CTF advice.'
-    : 'Your practice size is within the scope of the AUSTRAC Legal Profession Program Starter Kit, which is designed for practices of up to 15 personnel. You can use it as your complete foundation and customise it to reflect your practice\'s specific operations and risk exposure.';
-  var cn = mixed
-    ? '<div class="info-card"><h4>Mixed practice: two risk assessments required</h4><p>Your practice provides both legal and conveyancing services. You must maintain two separate risk assessments: one from the Legal Profession program and one from the Conveyancing program.</p><a href="https://www.austrac.gov.au/industry-and-business/obligations-and-guidance/program-starter-kits/legal-profession-program-starter-kit" target="_blank">AUSTRAC Starter Kits</a></div>'
-    : '';
+  document.getElementById('setup-step-label').textContent = 'Result';
+  document.getElementById('setup-pct').textContent = 'Done';
+  document.getElementById('setup-progress').style.width = '100%';
+
+  var services = setupSel[2] || [];
+  var criteria = setupSel[6] || [];
+  var unmet = KIT_CRITERIA.filter(function(_, k) { return criteria.indexOf(k) === -1; });
+  var noCertificate = criteria.indexOf(2) === -1;
+  var kit = noCertificate ? 'For Conveyancers' : 'For Lawyers';
+  var kitName = noCertificate ? 'conveyancing program starter kit' : 'legal profession program starter kit';
+  var kitStart = noCertificate ? L.convKitStart : L.legalKitStart;
+
+  var practice = setupAnswers[5];
+  var ra = practice === 0 ? 'both risk assessments in the starter kit: conveyancing and other professional services'
+         : practice === 2 ? 'the conveyancing risk assessment in the starter kit'
+         : 'the other professional services risk assessment in the starter kit';
+
+  var item3Only = services.length === 1 && services[0] === 2;
+  var item3Note = item3Only ? '<div class="info-card caution"><h4>Check the trust account exemption first</h4><p>You ticked only item 3 (holding client money or property). This is exempt where your practice provides no other designated service and the money is held for payments reasonably incidental to a service that is not a designated service. It is assessed across the whole practice and does not apply if the trust account is used as a de facto bank account. If the exemption applies, you may not be a reporting entity.</p><a href="' + L.pds + '" target="_blank">Professional designated services</a></div>' : '';
+
+  var kitCard;
+  if (!unmet.length) {
+    kitCard = '<p>Your practice meets all ten of AUSTRAC\'s characteristics for the ' + kitName + '. You can use it as a complete package, customised to your practice. Use ' + ra + '.</p>';
+  } else {
+    kitCard = '<p>Your practice does not meet ' + (unmet.length === 1 ? 'this characteristic' : 'these ' + unmet.length + ' characteristics') + ':</p><ul>' +
+      unmet.map(function(u) { return '<li>' + u + '</li>'; }).join('') + '</ul>' +
+      '<p>AUSTRAC says that where a practice does not meet all of the characteristics, you must assess whether the starter kit is appropriate and identify the changes you need. You cannot rely on the starter kit alone to meet AUSTRAC\'s expectations. You may adapt parts of it, but your program must reflect the size, nature and complexity of your practice and the risks it faces. Larger practices are highly likely to need stronger or additional controls.</p>' +
+      (noCertificate ? '<p>If your conveyancing practice does not operate under a legal practising certificate, AUSTRAC directs you to the conveyancing program starter kit rather than the legal profession kit.</p>' : '') +
+      (criteria.indexOf(8) === -1 ? '<p>Separate procedures apply to clients transferred from another practice. See the Ongoing obligations section on existing clients.</p>' : '') +
+      '<p>If you use the starter kit as a base, use ' + ra + '.</p>';
+  }
+
   document.getElementById('setup-content').innerHTML =
-    '<div class="result-card captured"><h3>Tranche 2 obligations apply to your practice</h3><p>Based on your answers, your practice is likely a reporting entity under the AML/CTF Act and must comply from 1 July 2026.</p></div>' + cn +
-    '<div class="detail-section" style="margin-top:0.75rem;"><h4>What you need to do, in order</h4>' +
-    '<div class="info-card"><h4>1. Enrol with AUSTRAC</h4><p>From 31 March 2026, create a user account via the AUSTRAC Business Portal and complete the Business Profile Form. The deadline to enrol is 29 July 2026. Notify AUSTRAC within 14 days of any changes to your designated services or key personnel.</p><a href="https://www.austrac.gov.au/new-austrac/enrol-or-register/enrol-us" target="_blank">austrac.gov.au — Enrol with us</a></div>' +
-    '<div class="info-card"><h4>2. Appoint an AML/CTF compliance officer</h4><p>Appoint a compliance officer responsible for your program. In a small or sole practice this is typically the principal. In a larger practice a dedicated staff member should be appointed. The compliance officer must complete personnel due diligence before taking on the role.</p><a href="https://www.austrac.gov.au/sites/default/files/2026-01/Legal%20profession%20-%20Personnel%20forms%20-%20Personnel%20due%20diligence%20for%20AMLCTF%20compliance%20officer%20form%20-%20January%202026.docx" target="_blank">Download: Compliance officer due diligence form</a><a href="https://www.austrac.gov.au/sites/default/files/2026-01/Legal%20profession%20-%20Personnel%20forms%20-%20AMLCTF%20roles%20form%20-%20January%202026.docx" target="_blank">Download: AML/CTF roles form</a></div>' +
-    '<div class="info-card"><h4>3. Develop your AML/CTF program</h4><p>' + sn + '</p><a href="https://www.austrac.gov.au/industry-and-business/obligations-and-guidance/program-starter-kits/legal-profession-program-starter-kit/legal-profession-program-starter-kit-getting-started" target="_blank">austrac.gov.au — Getting started with the program</a></div>' +
-    '<div class="info-card"><h4>4. Conduct customer due diligence from 1 July 2026</h4><p>Identify and verify clients before or when providing designated services. Requirements differ by client type: individual, company, trust or government body. Use the onboarding and CDD forms available in the Forms and documents section.</p><a href="https://www.austrac.gov.au/industry-and-business/obligations-and-guidance/your-amlctf-program/customer-due-diligence/initial-customer-due-diligence/overview-initial-customer-due-diligence" target="_blank">austrac.gov.au — Initial CDD overview</a></div>' +
-    '<div class="info-card"><h4>5. Report suspicious matters and keep records</h4><p>From 1 July 2026, report suspicious matters to AUSTRAC and keep identity and transaction records for 7 years. Where a report may involve privileged communications, use the LPP claim form process.</p><a href="https://www.austrac.gov.au/industry-and-business/obligations-and-guidance/your-amlctf-program/reporting-us/legal-professional-privilege-reform" target="_blank">austrac.gov.au — LPP and AML/CTF reporting</a></div>' +
-    '</div><div style="margin-top:1rem;"><button class="btn-next" onclick="startFlow(\'forms\')">View forms and documents</button></div>' +
-    '<div class="disclaimer" style="margin-top:1rem;">AI disclaimer: based on AUSTRAC guidance as at January 2026. Verify at <a href="https://www.austrac.gov.au" target="_blank">austrac.gov.au</a>. Not legal advice.</div>';
+    '<div class="result-card captured"><h3>Tranche 2 obligations likely apply to your practice</h3><p>Based on your answers, your practice is likely a reporting entity under the AML/CTF Act and must meet its AML/CTF obligations before providing designated services.</p></div>' +
+    item3Note +
+    '<div class="detail-section" style="margin-top:0.75rem;"><h4>What you need to do</h4>' +
+    '<div class="info-card"><h4>1. Enrol with AUSTRAC</h4><p>Apply to enrol through AUSTRAC Online no later than 28 days after the day you start providing a designated service. If you are already providing designated services and have not enrolled, do it now. You can save the form and return to it for up to 14 days. You will receive an AUSTRAC Account Number (AAN). Lawyers and conveyancers generally do not need to register, only enrol. Update your enrolment details within 14 days of any change to your business or designated services.</p><a href="' + L.enrol + '" target="_blank">Enrol with us overview</a><a href="' + L.enrolPrep + '" target="_blank">Information you need to prepare</a><a href="' + L.austracOnline + '" target="_blank">Sign in to AUSTRAC Online</a></div>' +
+    '<div class="info-card"><h4>2. Appoint an AML/CTF compliance officer</h4><p>Appoint a compliance officer to oversee day to day compliance. For legal practices this is typically a principal lawyer or managing partner. Complete personnel due diligence on them before they start in the role, and notify AUSTRAC of who they are.</p><a href="' + formUrl(kit, 'AML/CTF compliance officer personnel due diligence form') + '" target="_blank">Download: compliance officer personnel due diligence form</a><a href="' + formUrl(kit, 'AML/CTF compliance officer and governing body personnel due diligence form') + '" target="_blank">Download: form where the compliance officer is also the governing body (sole practitioners)</a><a href="' + formUrl(kit, 'AML/CTF roles form') + '" target="_blank">Download: AML/CTF roles form</a><a href="' + L.co + '" target="_blank">AML/CTF compliance officer guidance</a></div>' +
+    '<div class="info-card"><h4>3. Put your AML/CTF program in place</h4><p>You must have an AML/CTF program in place before you provide designated services. It is made up of a risk assessment, policies, processes and forms.</p>' + kitCard + '<a href="' + kitStart + '" target="_blank">' + (noCertificate ? 'Conveyancing' : 'Legal profession') + ' program starter kit: Getting started</a></div>' +
+    '<div class="info-card"><h4>4. Customer due diligence</h4><p>Complete initial customer due diligence on a new client before you provide them with a designated service. Clients you were already acting for on 1 July 2026 are treated differently and may not need initial CDD unless their circumstances change. Ongoing CDD applies to all clients.</p><a href="' + L.cdd + '" target="_blank">Overview of initial customer due diligence</a><a href="' + L.existing + '" target="_blank">Transitioning existing customers</a></div>' +
+    '<div class="info-card"><h4>5. Report to AUSTRAC and keep records</h4><p>Submit suspicious matter reports and threshold transaction reports on time, with a legal professional privilege form where you withhold privileged information. Keep transaction, customer due diligence and program records for 7 years.</p><a href="' + L.smr + '" target="_blank">Suspicious matter reports</a><a href="' + L.lpp + '" target="_blank">Legal professional privilege</a><a href="' + L.records + '" target="_blank">Record keeping overview</a></div>' +
+    '<div class="info-card"><h4>6. Keep up your ongoing obligations</h4><p>Lodge your annual compliance report each year between 1 July and 30 September, plan for your first independent evaluation and keep your program up to date as AUSTRAC updates its starter kits.</p></div>' +
+    '</div>' +
+    '<div class="btn-row"><button class="btn-next" style="margin-top:0;" onclick="startFlow(\'forms\')">View forms and documents</button><button class="btn-secondary" onclick="startFlow(\'ongoing\')">Ongoing obligations</button></div>' +
+    disclaimer('AI disclaimer: this guide uses AI and may contain errors.');
 }
 
-var checkerState = {desc:'',questions:[],answers:[],qNum:0,phase:'input'};
+/* ---------- Designated service checker ---------- */
+
+var MAX_QUESTIONS = 6;
+var checkerState = {desc:'', questions:[], answers:[], phase:'input', req:0};
 
 function initChecker() {
-  checkerState = {desc:'',questions:[],answers:[],qNum:0,phase:'input'};
-  document.getElementById('checker-back-btn').style.display = 'none';
-  document.getElementById('checker-step-label').textContent = 'Describe your service';
-  document.getElementById('checker-pct').textContent = '';
-  document.getElementById('checker-progress').style.width = '0%';
+  checkerState = {desc:'', questions:[], answers:[], phase:'input', req:0};
   renderCheckerInput();
 }
-
+function setCheckerProgress(label, pct) {
+  document.getElementById('checker-step-label').textContent = label;
+  document.getElementById('checker-pct').textContent = pct ? pct + '%' : '';
+  document.getElementById('checker-progress').style.width = (pct || 0) + '%';
+}
 function renderCheckerInput() {
   checkerState.phase = 'input';
+  checkerState.req++;
   document.getElementById('checker-back-btn').style.display = 'none';
+  setCheckerProgress('Describe your service', 0);
   document.getElementById('checker-content').innerHTML =
-    '<div class="q-card"><div class="q-step">Before we begin</div>' +
-    '<div class="q-text">Describe the service your practice provides</div>' +
-    '<div class="q-sub">Be specific but do not include any identifiable client information. For example: "We prepare contracts for residential property sales and attend settlement" or "We advise on corporate restructures and draft trust deeds" or "We are preparing a shareholders agreement for an Australian entity." The AI will ask targeted questions to assess whether a Table 6 designated service applies.</div></div>' +
-    '<div style="margin-bottom:0.75rem;"><textarea id="svc-desc" placeholder="Describe your service here..." oninput="document.getElementById(\'start-check\').disabled=this.value.trim().length<15"></textarea></div>' +
-    '<button class="btn-next" id="start-check" disabled onclick="runCheckerQuestion()">Begin assessment</button>' +
-    '<div class="disclaimer" style="margin-top:1rem;">AI disclaimer: analysis is based on AUSTRAC Table 6 criteria. Verify outcomes at <a href="https://www.austrac.gov.au/new-austrac/designated-services-newly-regulated-entities/professional-designated-services" target="_blank">austrac.gov.au</a>.</div>';
+    '<div class="q-card"><div class="q-step">Before we begin</div><div class="q-text">Describe the service your practice provides</div>' +
+    '<div class="q-sub">Be specific but do not include any identifiable client information. For example: "We prepare contracts for residential property sales and attend settlement" or "We advise on corporate restructures and draft trust deeds" or "We are preparing a shareholders agreement for an Australian entity." The AI will ask targeted questions to assess whether a table 6 designated service applies.</div></div>' +
+    '<div style="margin-bottom:0.75rem;"><textarea id="svc-desc" maxlength="500" placeholder="Describe your service here..." oninput="document.getElementById(\'start-check\').disabled=this.value.trim().length<15"></textarea></div>' +
+    '<button class="btn-next" id="start-check" disabled onclick="beginChecker()">Begin assessment</button>' +
+    disclaimer('AI disclaimer: this guide uses AI and may contain errors.');
+  var t = document.getElementById('svc-desc');
+  t.value = checkerState.desc;
+  document.getElementById('start-check').disabled = t.value.trim().length < 15;
 }
-
-function checkerGoBack() {
-  if (checkerState.phase === 'input') return;
-  if (checkerState.answers.length === 0) { initChecker(); return; }
-  checkerState.answers.pop();
-  checkerState.questions.pop();
-  checkerState.qNum = Math.max(0, checkerState.qNum - 1);
-  if (checkerState.qNum === 0) initChecker();
-  else { var prev = checkerState.questions[checkerState.questions.length - 1]; renderCheckerQ(prev, true); }
-}
-
-function runCheckerQuestion() {
-  var descEl = document.getElementById('svc-desc');
-  if (descEl) checkerState.desc = descEl.value.trim();
-  checkerState.phase = 'qa';
-  document.getElementById('checker-back-btn').style.display = 'inline-block';
-  var pct = Math.min(Math.round((checkerState.qNum / 6) * 100), 90);
-  document.getElementById('checker-progress').style.width = pct + '%';
-  document.getElementById('checker-step-label').textContent = checkerState.qNum === 0 ? 'Analysing...' : 'Question ' + (checkerState.qNum + 1) + ' of ~6';
-  document.getElementById('checker-pct').textContent = checkerState.qNum > 0 ? pct + '%' : '';
-  document.getElementById('checker-content').innerHTML = '<div class="loading-wrap"><div class="loading-dots"><span></span><span></span><span></span></div><span style="font-size:13px;color:#6b7280;">Analysing your service...</span></div>';
-  var sys = 'You are an expert AML/CTF compliance adviser for Australia\'s Tranche 2 reforms. You should use Australian English only. You should not use oxford commas i.e. the commas before "and", "but" and "or". You should not use any em dashes or hyphens. Ask structured questions ONE AT A TIME (maximum 6) to determine whether a service triggers any Table 6 item under s 6(5B) of the AML/CTF Act (from 1 July 2026).\n\nTable 6 items:\n1. Assisting to sell, buy or transfer real estate\n2. Assisting with a transaction involving a business, assets or legal arrangement\n3. Receiving, holding, controlling or managing a person\'s property as part of a transaction\n4. Assisting with equity or debt financing for a body corporate or legal arrangement\n5. Creating, selling or transferring a shelf company\n6. Assisting with the creation or restructuring of a body corporate or legal arrangement\n7. Acting as, or arranging for someone to act as, director, secretary, attorney, trustee, partner or similar\n8. Acting as, or arranging for someone to act as, a nominee shareholder\n9. Providing a registered office or principal place of business address for an entity\n\nKey rules:\n- Must be to an external client (not in-house)\n- Must have geographical link to Australia\n- Must be in the course of carrying on a business\n- Court-ordered services (after the order) excluded for items 1 and 2\n- General or hypothetical advice not directly advancing a transaction is NOT captured\n- Dispute resolution determining only past events is NOT captured\n\nUse Australian English. Do not use em dashes or hyphens. Do not use Oxford commas.\n\nReturn ONLY valid JSON, no markdown fences, no preamble.\n\nFor a question: {"type":"question","question":"...","options":["A","B","C"]}\nFor final result: {"type":"result","captured":true,"items":["Item N: description"],"reasoning":"explanation","notCapturedReason":"if not captured","nextSteps":["step 1","step 2"]}';
-  // Security: validate inputs
-  var safeDesc = checkerState.desc.substring(0, 500);
-  if (checkerState.questions.length > 8) {
-    document.getElementById('checker-content').innerHTML = '<div class="q-card"><p style="font-size:14px;color:#6b7280;">Assessment limit reached. Please start a new assessment.</p></div><button class="btn-secondary" style="margin-top:0.75rem;" onclick="initChecker()">Start again</button>';
-    return;
-  }
-  var msgs = [{role:'user', content:'Service: ' + safeDesc}];
-  for (var i = 0; i < checkerState.questions.length; i++) {
-    msgs.push({role:'assistant', content: JSON.stringify({type:'question', question: checkerState.questions[i].question || checkerState.questions[i].text || '', options: checkerState.questions[i].options || []})});
-    msgs.push({role:'user', content: 'Answer: ' + checkerState.answers[i]});
-  }
-  if (checkerState.qNum >= 5) msgs.push({role:'user', content:'You have enough information. Provide the final result JSON now.'});
-  fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json','x-app-token':'47a88f17e3a9dd663c22a8f33b168bb77bffd8dd9c164c34'}, body: JSON.stringify({model:'claude-sonnet-4-5-20250929', max_tokens:800, system:sys, messages:msgs})})
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      var parsed = null;
-      var rawText = '';
-      if (data.content && data.content[0] && data.content[0].text) {
-        rawText = data.content[0].text;
-      } else if (data.raw) {
-        rawText = data.raw;
-      } else if (data.parsed && data.parsed.type) {
-        parsed = data.parsed;
-      }
-      if (!parsed && rawText) {
-        var work = rawText.trim();
-        var firstBrace = work.indexOf('{');
-        var lastBrace = work.lastIndexOf('}');
-        if (firstBrace !== -1 && lastBrace !== -1) {
-          work = work.substring(firstBrace, lastBrace + 1);
-        }
-        try { parsed = JSON.parse(work); } catch(e) { parsed = null; }
-      }
-      if (!parsed || !parsed.type) {
-        document.getElementById('checker-content').innerHTML = '<div class="q-card"><p style="font-size:14px;color:#6b7280;">Sorry, something went wrong. Raw response: ' + (rawText ? rawText.substring(0, 200) : JSON.stringify(data).substring(0, 200)) + '</p></div><button class="btn-secondary" style="margin-top:0.75rem;" onclick="initChecker()">Start again</button>';
-        return;
-      }
-      if (parsed.type === 'result') renderCheckerResult(parsed);
-      else { checkerState.questions.push(parsed); renderCheckerQ(parsed, false); }
-    })
-    .catch(function() {
-      document.getElementById('checker-content').innerHTML = '<div class="q-card"><p style="font-size:14px;color:#6b7280;">Connection error. Please try again.</p></div><button class="btn-secondary" style="margin-top:0.75rem;" onclick="initChecker()">Start again</button>';
-    });
-}
-
-function renderCheckerQ(q, isBack) {
-  if (!isBack) checkerState.qNum++;
-  var pct = Math.min(Math.round((checkerState.qNum / 6) * 100), 85);
-  document.getElementById('checker-progress').style.width = pct + '%';
-  document.getElementById('checker-step-label').textContent = 'Question ' + checkerState.qNum + ' of ~6';
-  document.getElementById('checker-pct').textContent = pct + '%';
-  var oh = (q.options || ['Yes','No']).map(function(o) {
-    var safe = o.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-    return '<button class="q-opt" onclick="answerChecker(\'' + safe + '\')">' + o + '</button>';
-  }).join('');
-  document.getElementById('checker-content').innerHTML =
-    '<div class="q-card"><div class="q-step">Question ' + checkerState.qNum + ' of ~6</div>' +
-    '<div class="q-text">' + (q.question || q.text || q.content || '') + '</div>' +
-    '<div class="q-opts">' + oh + '</div></div>' +
-    '<div style="font-size:12px;color:#6b7280;margin-top:0.5rem;">Assessing: ' + checkerState.desc.substring(0, 90) + (checkerState.desc.length > 90 ? '...' : '') + '</div>';
-}
-
-function answerChecker(answer) {
-  checkerState.answers.push(answer);
+function beginChecker() {
+  checkerState.desc = document.getElementById('svc-desc').value.trim().substring(0, 500);
+  checkerState.questions = []; checkerState.answers = [];
   runCheckerQuestion();
 }
+function checkerGoBack() {
+  if (checkerState.phase === 'result') {
+    checkerState.answers.pop();
+    checkerState.phase = 'qa';
+    renderCheckerQ();
+  } else if (checkerState.phase === 'qa' || checkerState.phase === 'loading' || checkerState.phase === 'error') {
+    if (checkerState.questions.length <= 1 && checkerState.answers.length === 0) { renderCheckerInput(); return; }
+    if (checkerState.answers.length >= checkerState.questions.length) checkerState.answers.pop();
+    else { checkerState.questions.pop(); checkerState.answers.pop(); }
+    if (!checkerState.questions.length) { renderCheckerInput(); return; }
+    checkerState.phase = 'qa';
+    checkerState.req++;
+    renderCheckerQ();
+  }
+}
+function checkerError(msg) {
+  checkerState.phase = 'error';
+  document.getElementById('checker-content').innerHTML = '<div class="q-card"><p style="font-size:14px;color:#6b7280;">' + msg + '</p></div><div class="btn-row"><button class="btn-secondary" onclick="runCheckerQuestion()">Try again</button><button class="btn-secondary" onclick="initChecker()">Start again</button></div>';
+}
+function runCheckerQuestion() {
+  if (checkerState.questions.length > MAX_QUESTIONS) {
+    checkerError('Assessment limit reached. Please start a new assessment.');
+    return;
+  }
+  checkerState.phase = 'loading';
+  var myReq = ++checkerState.req;
+  document.getElementById('checker-back-btn').style.display = 'inline-block';
+  var n = checkerState.questions.length;
+  setCheckerProgress(n === 0 ? 'Analysing...' : 'Question ' + (n + 1) + ' of ~' + MAX_QUESTIONS, Math.min(Math.round((n / MAX_QUESTIONS) * 100), 90));
+  document.getElementById('checker-content').innerHTML = '<div class="loading-wrap"><div class="loading-dots"><span></span><span></span><span></span></div><span style="font-size:13px;color:#6b7280;">Analysing your service...</span></div>';
 
+  var msgs = [{role:'user', content:'Service: ' + checkerState.desc}];
+  for (var i = 0; i < checkerState.questions.length; i++) {
+    var q = checkerState.questions[i];
+    msgs.push({role:'assistant', content: JSON.stringify({type:'question', question:q.question, options:q.options})});
+    msgs.push({role:'user', content:'Answer: ' + checkerState.answers[i]});
+  }
+
+  fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json', 'x-app-token':APP_TOKEN}, body: JSON.stringify({messages:msgs})})
+    .then(function(r) { return r.json().catch(function() { return {}; }); })
+    .then(function(data) {
+      if (myReq !== checkerState.req) return;
+      var parsed = data && data.parsed;
+      if (!parsed || !parsed.type) {
+        checkerError('Sorry, the checker could not complete this step. Please try again in a moment.');
+        return;
+      }
+      if (parsed.type === 'result') { renderCheckerResult(parsed); return; }
+      var opts = Array.isArray(parsed.options) ? parsed.options.filter(function(o) { return typeof o === 'string' && o.trim(); }).slice(0, 4) : [];
+      if (!parsed.question || opts.length < 2) {
+        checkerError('Sorry, the checker could not complete this step. Please try again in a moment.');
+        return;
+      }
+      checkerState.questions.push({question:String(parsed.question), options:opts});
+      checkerState.phase = 'qa';
+      renderCheckerQ();
+    })
+    .catch(function() {
+      if (myReq !== checkerState.req) return;
+      checkerError('Connection error. Please check your connection and try again.');
+    });
+}
+function renderCheckerQ() {
+  var n = checkerState.questions.length;
+  var q = checkerState.questions[n - 1];
+  if (n > MAX_QUESTIONS) { checkerError('Assessment limit reached. Please start a new assessment.'); return; }
+  setCheckerProgress('Question ' + n + ' of ~' + MAX_QUESTIONS, Math.min(Math.round((n / MAX_QUESTIONS) * 100), 85));
+  var oh = q.options.map(function(o, idx) { return '<button class="q-opt" onclick="answerChecker(' + idx + ')">' + esc(o) + '</button>'; }).join('');
+  document.getElementById('checker-content').innerHTML =
+    '<div class="q-card"><div class="q-step">Question ' + n + ' of ~' + MAX_QUESTIONS + '</div><div class="q-text">' + esc(q.question) + '</div><div class="q-opts">' + oh + '</div></div>' +
+    '<div style="font-size:12px;color:#6b7280;margin-top:0.5rem;">Assessing: ' + esc(checkerState.desc.substring(0, 90)) + (checkerState.desc.length > 90 ? '...' : '') + '</div>';
+}
+function answerChecker(idx) {
+  var q = checkerState.questions[checkerState.questions.length - 1];
+  checkerState.answers[checkerState.questions.length - 1] = q.options[idx];
+  runCheckerQuestion();
+}
 function renderCheckerResult(r) {
   checkerState.phase = 'result';
-  document.getElementById('checker-progress').style.width = '100%';
-  document.getElementById('checker-step-label').textContent = 'Assessment complete';
-  document.getElementById('checker-pct').textContent = '100%';
+  setCheckerProgress('Assessment complete', 100);
   var cls = r.captured === true ? 'captured' : (r.captured === false ? 'not-captured' : 'uncertain');
   var verdict = r.captured === true ? 'Tranche 2 obligations likely apply' : (r.captured === false ? 'Tranche 2 obligations likely do not apply' : 'Further assessment required');
-  var ih = r.items && r.items.length ? '<div class="detail-section"><h4>Applicable Table 6 items</h4><ul>' + r.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') + '</ul></div>' : '';
-  var nh = r.captured === false && r.notCapturedReason ? '<div class="detail-section"><h4>Why obligations do not apply</h4><p>' + r.notCapturedReason + '</p></div>' : '';
-  var sh = r.nextSteps && r.nextSteps.length ? '<div class="detail-section"><h4>Recommended next steps</h4><ul>' + r.nextSteps.map(function(s) { return '<li>' + s + '</li>'; }).join('') + '</ul></div>' : '';
-  var links = [
-    {l:'AUSTRAC — Professional designated services',u:'https://www.austrac.gov.au/new-austrac/designated-services-newly-regulated-entities/professional-designated-services'},
-    {l:'AUSTRAC — Check if you may be regulated',u:'https://www.austrac.gov.au/amlctf-reform/check-if-you-may-be-regulated-reform'},
-    {l:'AUSTRAC — Enrol with AUSTRAC',u:'https://www.austrac.gov.au/new-austrac/enrol-or-register/enrol-us'},
-    {l:'AUSTRAC — Legal Profession Starter Kit',u:'https://www.austrac.gov.au/industry-and-business/obligations-and-guidance/program-starter-kits/legal-profession-program-starter-kit'}
-  ];
+  var list = function(a) { return Array.isArray(a) ? a.map(function(x) { return '<li>' + esc(x) + '</li>'; }).join('') : ''; };
+  var ih = Array.isArray(r.items) && r.items.length ? '<div class="detail-section"><h4>Applicable table 6 items</h4><ul>' + list(r.items) + '</ul></div>' : '';
+  var nh = r.captured === false && r.notCapturedReason ? '<div class="detail-section"><h4>Why obligations do not apply</h4><p>' + esc(r.notCapturedReason) + '</p></div>' : '';
+  var sh = Array.isArray(r.nextSteps) && r.nextSteps.length ? '<div class="detail-section"><h4>Recommended next steps</h4><ul>' + list(r.nextSteps) + '</ul></div>' : '';
+  var links = [['Professional designated services', L.pds], ['Check if you may be regulated', L.check], ['Enrol with us overview', L.enrol], ['Legal profession program starter kit: Getting started', L.legalKitStart]];
   document.getElementById('checker-content').innerHTML =
     '<div class="result-card ' + cls + '"><h3>' + verdict + '</h3></div>' +
-    '<div class="detail-section"><h4>Assessment</h4><p>' + (r.reasoning || '') + '</p></div>' +
-    ih + nh + sh +
-    '<div class="detail-section"><h4>Verify at AUSTRAC</h4><ul>' + links.map(function(l) { return '<li><a href="' + l.u + '" target="_blank">' + l.l + '</a></li>'; }).join('') + '</ul></div>' +
-    '<div style="margin-top:1rem;"><button class="btn-secondary" onclick="initChecker()">New assessment</button></div>' +
-    '<div class="disclaimer" style="margin-top:1rem;">AI disclaimer: assessment generated by AI based on AUSTRAC guidance as at January 2026. Independently verify at <a href="https://www.austrac.gov.au" target="_blank">austrac.gov.au</a> and the AML/CTF Act. Not legal advice.</div>';
+    '<div class="detail-section"><h4>Assessment</h4><p>' + esc(r.reasoning) + '</p></div>' + ih + nh + sh +
+    '<div class="detail-section"><h4>Verify at AUSTRAC</h4>' + linkList(links) + '</div>' +
+    '<div class="btn-row"><button class="btn-secondary" onclick="initChecker()">New assessment</button></div>' +
+    disclaimer('AI disclaimer: this assessment is generated by AI and may contain errors. It is');
 }
 
-var BASE = 'https://www.austrac.gov.au/sites/default/files/2026-01/';
-function u(s) { return BASE + s.replace(/ /g, '%20').replace(/,/g, '%2C'); }
+/* ---------- Ongoing obligations ---------- */
 
-var allForms = [
-  {name:'Policy document',tags:['Program'],url:u('Legal profession - Policy document - January 2026.docx')},
-  {name:'Process document',tags:['Program'],url:u('Legal profession - Process document - January 2026.docx')},
-  {name:'Customise guide',tags:['Program'],url:u('Legal profession - Customise guide - January 2026.docx')},
-  {name:'Risk assessment: other professional services',tags:['Program','Risk'],url:u('Legal profession - Risk assessment - Other professional services - January 2026.docx')},
-  {name:'Risk assessment: conveyancing for the legal profession',tags:['Program','Risk'],url:u('Legal profession - Risk assessment - Conveyancing for the legal profession - January 2026.docx')},
-  {name:'Maintain your AML/CTF program',tags:['Program','Maintain'],url:u('Legal profession - Maintain program forms - Maintain your AMLCTF program form - January 2026.docx')},
-  {name:'Independent evaluation response',tags:['Program','Maintain'],url:u('Legal profession - Maintain program forms - Independent evaluation response form - January 2026.docx')},
-  {name:'Annual report to governing body',tags:['Program','Maintain'],url:u('Legal profession - Maintain program forms - Annual report to the governing body form - January 2026.docx')},
-  {name:'SMR effectiveness check',tags:['Program','Maintain'],url:u('Legal profession - Maintain program forms - SMR effectiveness check form - January 2026.docx')},
-  {name:'Client onboarding effectiveness check',tags:['Program','Maintain'],url:u('Legal profession - Maintain program forms - Client onboarding effectiveness check form - January 2026.docx')},
-  {name:'Enhanced CDD effectiveness check',tags:['Program','Maintain'],url:u('Legal profession - Maintain program forms - Enhanced CDD effectiveness check form - January 2026.docx')},
-  {name:'TTR effectiveness check',tags:['Program','Maintain'],url:u('Legal profession - Maintain program forms - TTR effectiveness check form - January 2026.docx')},
-  {name:'CBM reporting effectiveness check',tags:['Program','Maintain'],url:u('Legal profession - Maintain program forms - CBM reporting effectiveness check form - January 2026.docx')},
-  {name:'Compliance officer effectiveness check',tags:['Program','Maintain'],url:u('Legal profession - Maintain program forms - Compliance officer and senior manager effectiveness check form - January 2026.docx')},
-  {name:'Periodic effectiveness testing summary',tags:['Program','Maintain'],url:u('Legal profession - Maintain program forms - Periodic effectiveness testing summary form - January 2026.docx')},
-  {name:'AML/CTF roles',tags:['Personnel'],url:u('Legal profession - Personnel forms - AMLCTF roles form - January 2026.docx')},
-  {name:'Assign responsibilities',tags:['Personnel'],url:u('Legal profession - Personnel forms - Assign responsibilities form - January 2026.docx')},
-  {name:'Personnel due diligence',tags:['Personnel'],url:u('Legal profession - Personnel forms - Personnel due diligence form - January 2026.docx')},
-  {name:'Compliance officer due diligence',tags:['Personnel'],url:u('Legal profession - Personnel forms - Personnel due diligence for AMLCTF compliance officer form - January 2026.docx')},
-  {name:'Due diligence: compliance officer and governing body are the same person',tags:['Personnel'],url:u('Legal profession - Personnel forms - Personnel due diligence where the compliance officer and governing body are the same person form - January 2026.docx')},
-  {name:'Onboarding: individual or sole trader',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Onboarding form - Individual or sole trader - January 2026.docx')},
-  {name:'Initial CDD: individual or sole trader',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Initial customer due diligence form - Individual or sole trader - January 2026.docx')},
-  {name:'Onboarding: body corporate, partnership or unincorporated association',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Onboarding form - Body corporate, partnership or unincorporated association -January 2026.docx')},
-  {name:'Initial CDD: body corporate, partnership or association',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Initial customer due diligence form - Body corporate, partnership or association - January 2026.docx')},
-  {name:'Onboarding: trust',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Onboarding form - Trust - January 2026.docx')},
-  {name:'Initial CDD: trust',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Initial customer due diligence form - Trust - January 2026.docx')},
-  {name:'Onboarding: government body',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Onboarding form - Government body - January 2026.docx')},
-  {name:'Initial CDD: government body',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Initial customer due diligence form - Government body - January 2026.docx')},
-  {name:'Enhanced CDD',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Enhanced CDD form - January 2026.docx')},
-  {name:'Unusual activity report information',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Unusual activity report information form - January 2026.docx')},
-  {name:'Unusual activity report review',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Unusual activity report review form - January 2026.docx')},
-  {name:'Escalation',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Escalation form - January 2026.docx')},
-  {name:'Escalations register',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Escalations register - January 2026.docx')},
-  {name:'Periodic review and update',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Periodic review and update form - January 2026.docx')},
-  {name:'Trigger event review and update',tags:['For Lawyers'],url:u('Legal profession - Customer forms - Trigger event review and update form - January 2026.docx')},
-  {name:'Policy document',tags:['For Conveyancers','Program'],url:u('Conveyancers - Policy document - January 2026.docx')},
-  {name:'Process document',tags:['For Conveyancers','Program'],url:u('Conveyancers - Process document - January 2026.docx')},
-  {name:'Customise guide',tags:['For Conveyancers','Program'],url:u('Conveyancers - Customise guide - January 2026.docx')},
-  {name:'Risk assessment: conveyancing',tags:['For Conveyancers','Risk'],url:u('Conveyancers - Risk assessment - Conveyancing - January 2026.docx')},
-  {name:'Maintain your AML/CTF program',tags:['For Conveyancers','Maintain'],url:u('Conveyancers - Maintain program forms - Maintain your AMLCTF program form - January 2026.docx')},
-  {name:'Annual report to governing body',tags:['For Conveyancers','Maintain'],url:u('Conveyancers - Maintain program forms - Annual report to the governing body form - January 2026.docx')},
-  {name:'Independent evaluation response',tags:['For Conveyancers','Maintain'],url:u('Conveyancers - Maintain program forms - Independent evaluation response form - January 2026.docx')},
-  {name:'SMR effectiveness check',tags:['For Conveyancers','Maintain'],url:u('Conveyancers - Maintain program forms - SMR effectiveness check form - January 2026.docx')},
-  {name:'Client onboarding effectiveness check',tags:['For Conveyancers','Maintain'],url:u('Conveyancers - Maintain program forms - Client onboarding effectiveness check form - January 2026.docx')},
-  {name:'Enhanced CDD effectiveness check',tags:['For Conveyancers','Maintain'],url:u('Conveyancers - Maintain program forms - Enhanced CDD effectiveness check form - January 2026.docx')},
-  {name:'TTR effectiveness check',tags:['For Conveyancers','Maintain'],url:u('Conveyancers - Maintain program forms - TTR effectiveness check form - January 2026.docx')},
-  {name:'CBM reporting effectiveness check',tags:['For Conveyancers','Maintain'],url:u('Conveyancers - Maintain program forms - CBM reporting effectiveness check form - January 2026.docx')},
-  {name:'Compliance officer effectiveness check',tags:['For Conveyancers','Maintain'],url:u('Conveyancers - Maintain program forms - Compliance officer and senior manager effectiveness check form - January 2026.docx')},
-  {name:'Periodic effectiveness testing summary',tags:['For Conveyancers','Maintain'],url:u('Conveyancers - Maintain program forms - Periodic effectiveness testing summary form - January 2026.docx')},
-  {name:'AML/CTF roles',tags:['For Conveyancers','Personnel'],url:u('Conveyancers - Personnel forms - AMLCTF roles form - January 2026.docx')},
-  {name:'Assign responsibilities',tags:['For Conveyancers','Personnel'],url:u('Conveyancers - Personnel forms - Assign responsibilities form - January 2026.docx')},
-  {name:'Personnel due diligence',tags:['For Conveyancers','Personnel'],url:u('Conveyancers - Personnel forms - Personnel due diligence form - January 2026.docx')},
-  {name:'Compliance officer due diligence',tags:['For Conveyancers','Personnel'],url:u('Conveyancers - Personnel forms - Personnel due diligence for AMLCTF compliance officer form - January 2026.docx')},
-  {name:'Due diligence: compliance officer and governing body are the same person',tags:['For Conveyancers','Personnel'],url:u('Conveyancers - Personnel forms - Personnel due diligence where the compliance officer and governing body are the same person form - January 2026.docx')},
-  {name:'Onboarding: individual or sole trader',tags:['For Conveyancers'],url:u('Conveyancers - Customer forms - Onboarding form - Individual or sole trader - January 2026.docx')},
-  {name:'Initial CDD: individual or sole trader',tags:['For Conveyancers'],url:u('Conveyancers - Customer forms - Initial customer due diligence form - Individual or sole trader - January 2026.docx')},
-  {name:'Onboarding: body corporate, partnership or unincorporated association',tags:['For Conveyancers'],url:u('Conveyancers - Customer forms - Onboarding form - Body corporate, partnership or unincorporated association - January 2026.docx')},
-  {name:'Initial CDD: body corporate, partnership or association',tags:['For Conveyancers'],url:u('Conveyancers - Customer forms - Initial customer due diligence form - Body corporate, partnership or association - January 2026.docx')},
-  {name:'Onboarding: trust',tags:['For Conveyancers'],url:u('Conveyancers - Customer forms - Onboarding form - trust - January 2026.docx')},
-  {name:'Initial CDD: trust',tags:['For Conveyancers'],url:u('Conveyancers - Customer forms - Initial customer due diligence form - Trust - January 2026.docx')},
-  {name:'Onboarding: government body',tags:['For Conveyancers'],url:u('Conveyancers - Customer forms - Onboarding form - Government body - January 2026.docx')},
-  {name:'Initial CDD: government body',tags:['For Conveyancers'],url:u('Conveyancers - Customer forms - Initial customer due diligence form - Government body - January 2026.docx')},
-  {name:'Request to verify information',tags:['For Conveyancers'],url:u('Conveyancers - Customer forms - Request to verify information - January 2026.docx')}
+var ongoingCards = [
+  {t:'Suspicious matter reports', s:'Report suspicions formed on reasonable grounds through AUSTRAC Online.',
+   b:'<p>You must submit a suspicious matter report (SMR) if you suspect on reasonable grounds that:</p><ul><li>information you have may be relevant to a crime, including money laundering, terrorism financing, tax evasion or another Commonwealth, state or territory offence</li><li>a client, prospective client or their agent is not who they claim to be</li><li>a person is planning a money laundering or terrorism financing offence using your designated service.</li></ul>' +
+     '<p>Reasonable grounds is an objective test: would a reasonable person in your position form the suspicion on the information you have or could reasonably be expected to have.</p>' +
+     '<p><strong>Deadlines:</strong> within 24 hours of forming the suspicion if it relates to terrorism financing, otherwise within 3 business days after the day you form it. If you claim legal professional privilege over part of the information you have up to 5 business days (this extension does not apply to terrorism financing).</p>' +
+     '<p>Submit through AUSTRAC Online using the current SMR form, even if you cannot identify the offender or victim. Do not tip off the client. Read AUSTRAC\'s tipping off guidance before you tell anyone about a report.</p>',
+   l:[['Suspicious matter reports', L.smr], ['Tipping off', L.tippingOff], ['Risk insights and indicators of suspicious activity for legal professionals', L.indicators], ['Sign in to AUSTRAC Online', L.austracOnline]]},
+  {t:'Threshold transaction reports', s:'Cash of $10,000 or more that you receive or pay yourself.',
+   b:'<p>Submit a threshold transaction report (TTR) if, in providing a designated service, you receive or pay $10,000 or more (or the foreign currency equivalent) in physical currency, meaning notes or coins.</p>' +
+     '<ul><li>Electronic transfers, BPAY, PayID, cheques and card payments do not trigger a TTR, whatever the amount.</li><li>A cash deposit made by a client at the bank into your account is reported by the bank, not by you.</li><li>A client\'s bank statement showing cash deposits does not trigger a TTR for you.</li></ul>' +
+     '<p><strong>Deadline:</strong> within 10 business days after the day the transaction takes place. Submit through AUSTRAC Online using the current TTR form. If you withhold privileged information, submit a legal professional privilege form with the TTR.</p>',
+   l:[['Threshold transaction reports', L.ttr], ['Sign in to AUSTRAC Online', L.austracOnline]]},
+  {t:'Legal professional privilege forms', s:'How to withhold privileged information from a report or notice.',
+   b:'<p>The AML/CTF Act does not remove the right to withhold information protected by legal professional privilege (LPP). Only confidential communications that meet the common law test are protected, and not communications made for an illegal or improper purpose. LPP is narrower than your duty of confidentiality.</p>' +
+     '<ul><li><strong>SMRs:</strong> you can only claim privilege that belongs to someone else, such as your client. If all the grounds for your suspicion are privileged, you do not need to submit an SMR or an LPP form. If only part is privileged, submit the SMR with the non privileged information and an LPP form for the rest, within 5 business days (24 hours for terrorism financing).</li>' +
+     '<li><strong>TTRs:</strong> submit an LPP form with the TTR within 10 business days.</li>' +
+     '<li><strong>Notices under section 49:</strong> email the LPP form to lpp.forms@austrac.gov.au within the period the notice specifies.</li></ul>' +
+     '<p>Describing privileged information in the form does not by itself waive privilege. Failing to submit a required LPP form can attract civil penalties. If you are not a lawyer, get legal advice before relying on privilege.</p>',
+   l:[['Legal professional privilege', L.lpp]]},
+  {t:'Clients you already had on 1 July 2026', s:'When existing clients need initial customer due diligence.',
+   b:'<p>A client is a pre commencement customer if you were providing them with a designated service on 1 July 2026, or you had a business relationship with them involving designated services and provided one before that date. AUSTRAC looks at how long and how recently you acted for them and whether further designated services were expected.</p>' +
+     '<p>You can keep acting for these clients without initial CDD unless:</p><ul><li>a suspicious matter reporting obligation arises in relation to them, or</li><li>there is a significant change in the nature and purpose of the relationship that makes their money laundering and terrorism financing risk medium or high.</li></ul><p>If either happens, complete initial CDD before you provide the next designated service.</p>' +
+     '<p>Ongoing CDD applies to these clients now: monitor for unusual transactions and behaviour, review and update their KYC information at an appropriate frequency and watch for significant changes in the relationship.</p>' +
+     '<p>For clients transferred to you from another practice, you only avoid initial CDD if you received the other practice\'s transaction and CDD records. Otherwise complete initial CDD first.</p>',
+   l:[['Transitioning existing customers', L.existing], ['Ongoing customer due diligence', L.ongoingCdd]]},
+  {t:'Annual compliance report', s:'Lodge each year between 1 July and 30 September.',
+   b:'<p>Every reporting entity lodges an annual compliance report through AUSTRAC Online. The reporting period is the financial year. The first period for Tranche 2 practices is 1 July 2026 to 30 June 2027.</p>' +
+     '<ul><li>Lodge within 3 months after the period ends, between 1 July and 30 September.</li><li>Only an administrator on your AUSTRAC Online account can submit it.</li><li>Keep your contact details current so AUSTRAC\'s reminders reach your compliance officer.</li><li>Not lodging can lead to enforcement action such as a remedial direction or an infringement notice.</li></ul>' +
+     '<p>If you sold or closed your practice or provided no designated services in the period, answer only the first question, and request removal from the Reporting Entities Roll if you have stopped providing designated services.</p>',
+   l:[['Annual compliance reports', L.acr], ['User guide: Compliance reports', L.acrGuide], ['Request removal from our roll or registers', L.removal]]},
+  {t:'Independent evaluation', s:'The first evaluation falls due between 2029 and 2030.',
+   b:'<p>Your AML/CTF program must be independently evaluated. For newly regulated businesses, AUSTRAC\'s transitional rules set the first due date by the last two digits of your AUSTRAC Account Number (AAN):</p>' +
+     '<ul><li>both digits odd: 30 June 2029</li><li>second last digit odd and last digit even: 31 December 2029</li><li>both digits even: 30 June 2030</li><li>second last digit even and last digit odd: 31 December 2030.</li></ul>' +
+     '<p><strong>Check your date with AUSTRAC before relying on it.</strong> Record how you respond to the evaluation using the starter kit\'s independent evaluation response form.</p>',
+   l:[['AML/CTF transitional rules 2026', L.transRules], ['Step 5: Conduct an independent evaluation', L.evaluation]]},
+  {t:'Keeping your program current', s:'Review AUSTRAC\'s starter kit updates and keep your details up to date.',
+   b:'<p>AUSTRAC updated its starter kits in June 2026 (legal profession kit version 1.1). If you built your program from the earlier January 2026 documents, you must review the changes and decide what to adopt. The changes include:</p>' +
+     '<ul><li>delayed CDD for buyers in conveyancing extended to 28 days after exchange of contracts or 3 days before the agreed settlement date</li><li>streamlined beneficial ownership checks for some client types</li><li>annual compliance reporting moved to financial years</li><li>indicators of unusual or criminal behaviour applying during client onboarding</li><li>updated national risk information and more time for the first independent evaluation.</li></ul>' +
+     '<p>AUSTRAC asks you to apply the release across all affected documents, update your processes and retire superseded versions. The forms in this guide link to the current versions.</p>' +
+     '<p>Update your enrolment details in AUSTRAC Online within 14 days of any change to your business or designated services. AUSTRAC also keeps refining its professional designated services guidance, most recently in September 2026.</p>',
+   l:[['Updates to the legal profession program starter kit', L.legalKitUpd], ['Updates to the conveyancer program starter kit', L.convKitUpd], ['Professional designated services', L.pds]]}
 ];
+
+function renderOngoing() {
+  var html = '<p class="ob-intro">Once you are enrolled and your program is in place, these obligations continue. Select a topic to read more.</p>';
+  html += ongoingCards.map(function(c) {
+    return '<details class="ob-card"><summary><div><div class="ob-title">' + c.t + '</div><div class="ob-sum">' + c.s + '</div></div><span class="ob-plus">+</span></summary><div class="ob-body">' + c.b +
+      '<div class="ob-links">' + c.l.map(function(l) { return '<a href="' + l[1] + '" target="_blank">' + l[0] + '</a>'; }).join('') + '</div></div></details>';
+  }).join('');
+  document.getElementById('ongoing-content').innerHTML = html + disclaimer();
+}
+
+/* ---------- Forms and documents ---------- */
+
+var allForms = [{"name": "Customise the program starter kit guide","tags": ["For Lawyers","Program"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customise%20guide.docx"},{"name": "Risk assessment: other professional services","tags": ["For Lawyers","Program","Risk"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Risk%20assessment%20-%20other%20professional%20services.docx"},{"name": "Risk assessment: conveyancing","tags": ["For Lawyers","Program","Risk"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Risk%20assessment%20-%20conveyancing%20for%20the%20legal%20profession.docx"},{"name": "Policy document","tags": ["For Lawyers","Program"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Policy%20document.docx"},{"name": "Process document","tags": ["For Lawyers","Program"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Process%20document.docx"},{"name": "AML/CTF roles form","tags": ["For Lawyers","Personnel"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Personnel%20forms%20-%20AMLCTF%20roles%20form.docx"},{"name": "Assign responsibilities form","tags": ["For Lawyers","Personnel"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Personnel%20forms%20-%20Assign%20responsibilities%20form.docx"},{"name": "AML/CTF compliance officer and governing body personnel due diligence form","tags": ["For Lawyers","Personnel"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Personnel%20forms%20-%20Personnel%20due%20diligence%20where%20the%20compliance%20officer%20and%20governing%20body%20are%20the%20same%20person%20form.docx"},{"name": "AML/CTF compliance officer personnel due diligence form","tags": ["For Lawyers","Personnel"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Personnel%20forms%20-%20Personnel%20due%20diligence%20for%20AMLCTF%20compliance%20officer%20form.docx"},{"name": "Personnel due diligence form","tags": ["For Lawyers","Personnel"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Personnel%20forms%20-%20Personnel%20due%20diligence%20form.docx"},{"name": "Onboarding form: individual and sole trader (conveyancing clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Onboarding%20form%20-%20conveyancers%20-%20individual%20or%20sole%20trader.docx"},{"name": "Initial CDD form: individual and sole trader (conveyancing clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20conveyancers%20-%20individual%20or%20sole%20trader.docx"},{"name": "Onboarding form: body corporate, partnership or unincorporated association (conveyancing clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Onboarding%20form%20-%20conveyancers%20-%20body%20corporate%2C%20partnership%20or%20unincorporated%20association.docx"},{"name": "Initial CDD form: body corporate, partnership or unincorporated association (conveyancing clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20conveyancers%20-%20body%20corporate%2C%20partnership%20or%20association.docx"},{"name": "Onboarding form: trust (conveyancing clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Onboarding%20form%20-%20conveyancers%20-%20trust.docx"},{"name": "Initial CDD form: trust (conveyancing clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20conveyancers%20-%20trust.docx"},{"name": "Onboarding form: government body (conveyancing clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Onboarding%20form%20-%20conveyancers%20-%20government%20body.docx"},{"name": "Initial CDD form: government body (conveyancing clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20conveyancers%20-%20government%20body.docx"},{"name": "Request to verify information (conveyancing clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Request%20to%20verify%20information.docx"},{"name": "Onboarding form: individual and sole trader (other professional services clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Onboarding%20form%20-%20individual%20or%20sole%20trader.docx"},{"name": "Initial CDD form: individual and sole trader (other professional services clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20individual%20or%20sole%20trader.docx"},{"name": "Onboarding form: body corporate, partnership or unincorporated association (other professional services clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Onboarding%20form%20-%20body%20corporate%2C%20partnership%20or%20unincorporated%20association.docx"},{"name": "Initial CDD form: body corporate, partnership or unincorporated association (other professional services clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20body%20corporate%2C%20partnership%20or%20association.docx"},{"name": "Onboarding form: trust (other professional services clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Onboarding%20form%20-%20trust.docx"},{"name": "Initial CDD form: trust (other professional services clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20trust.docx"},{"name": "Onboarding form: government body (other professional services clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Onboarding%20form%20-%20government%20body.docx"},{"name": "Initial CDD form: government body (other professional services clients)","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20government%20body.docx"},{"name": "Unusual activity report information form","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Unusual%20activity%20report%20information%20form.docx"},{"name": "Escalation form","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Escalation%20form.docx"},{"name": "Enhanced CDD form","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Enhanced%20CDD%20form.docx"},{"name": "Unusual activity report review form","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Unusual%20activity%20report%20review%20form.docx"},{"name": "Escalations register","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Escalations%20register.docx"},{"name": "Periodic review and update form","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Periodic%20review%20and%20update%20form.docx"},{"name": "Trigger event review and update form","tags": ["For Lawyers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Customer%20forms%20-%20Trigger%20event%20review%20and%20update%20form.docx"},{"name": "Maintain the AML/CTF program","tags": ["For Lawyers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Maintain%20program%20forms%20-%20Maintain%20your%20AMLCTF%20program%20form.docx"},{"name": "Independent evaluation response","tags": ["For Lawyers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Maintain%20program%20forms%20-%20Independent%20evaluation%20response%20form.docx"},{"name": "SMR effectiveness check","tags": ["For Lawyers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Maintain%20program%20forms%20-%20SMR%20effectiveness%20check%20form.docx"},{"name": "Compliance officer and senior manager effectiveness check","tags": ["For Lawyers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Maintain%20program%20forms%20-%20Compliance%20officer%20and%20senior%20manager%20effectiveness%20check%20form.docx"},{"name": "Client onboarding effectiveness check","tags": ["For Lawyers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Maintain%20program%20forms%20-%20Client%20onboarding%20effectiveness%20check%20form.docx"},{"name": "Enhanced CDD effectiveness check","tags": ["For Lawyers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Maintain%20program%20forms%20-%20Enhanced%20CDD%20effectiveness%20check%20form.docx"},{"name": "TTR effectiveness check","tags": ["For Lawyers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Maintain%20program%20forms%20-%20TTR%20effectiveness%20check%20form.docx"},{"name": "CBM effectiveness check","tags": ["For Lawyers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Maintain%20program%20forms%20-%20CBM%20reporting%20effectiveness%20check%20form.docx"},{"name": "Periodic effectiveness testing summary","tags": ["For Lawyers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Maintain%20program%20forms%20-%20Periodic%20effectiveness%20testing%20summary%20form.docx"},{"name": "Annual report to the governing body","tags": ["For Lawyers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Legal%20profession%20-%20Maintain%20program%20forms%20-%20Annual%20report%20to%20the%20governing%20body%20form.docx"},{"name": "Customise the program starter kit guide","tags": ["For Conveyancers","Program"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customise%20guide.docx"},{"name": "Risk assessment: conveyancing","tags": ["For Conveyancers","Program","Risk"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Risk%20assessment.docx"},{"name": "Risk assessment: other professional services","tags": ["For Conveyancers","Program","Risk"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Risk%20assessment%20-%20other%20professional%20services.docx"},{"name": "Policy document","tags": ["For Conveyancers","Program"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Policy%20document.docx"},{"name": "Process document","tags": ["For Conveyancers","Program"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Process%20document.docx"},{"name": "AML/CTF roles form","tags": ["For Conveyancers","Personnel"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Personnel%20forms%20-%20AML_CTF%20roles%20form.docx"},{"name": "Assign responsibilities form","tags": ["For Conveyancers","Personnel"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Personnel%20forms%20-%20Assign%20responsibilities%20form.docx"},{"name": "AML/CTF compliance officer and governing body personnel due diligence form","tags": ["For Conveyancers","Personnel"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Personnel%20forms%20-%20Personnel%20due%20diligence%20where%20the%20compliance%20officer%20and%20governing%20body%20are%20the%20same%20person%20form.docx"},{"name": "AML/CTF compliance officer personnel due diligence form","tags": ["For Conveyancers","Personnel"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Personnel%20forms%20-%20Personnel%20due%20diligence%20for%20AMLCTF%20compliance%20officer%20form.docx"},{"name": "Personnel due diligence form","tags": ["For Conveyancers","Personnel"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Personnel%20forms%20-%20Personnel%20due%20diligence%20form.docx"},{"name": "Onboarding form: individual and sole trader (conveyancing clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Onboarding%20form%20-%20individual%20or%20sole%20trader.docx"},{"name": "Initial CDD form: individual and sole trader (conveyancing clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20individual%20or%20sole%20trader.docx"},{"name": "Onboarding form: body corporate, partnership or unincorporated association (conveyancing clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Onboarding%20form%20-%20body%20corporate%2C%20partnership%20or%20unincorporated%20association.docx"},{"name": "Initial CDD form: body corporate, partnership or unincorporated association (conveyancing clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20body%20corporate%2C%20partnership%20or%20association.docx"},{"name": "Onboarding form: trust (conveyancing clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Onboarding%20form%20-%20trust.docx"},{"name": "Initial CDD form: trust (conveyancing clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20trust.docx"},{"name": "Onboarding form: government body (conveyancing clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Onboarding%20form%20-%20government%20body.docx"},{"name": "Initial CDD form: government body (conveyancing clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20government%20body.docx"},{"name": "Request to verify information (conveyancing clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Request%20to%20verify%20information.docx"},{"name": "Onboarding form: individual and sole trader (other professional services clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Onboarding%20form%20-%20legal%20profession%20-%20individual%20or%20sole%20trader.docx"},{"name": "Initial CDD form: individual and sole trader (other professional services clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20legal%20profession%20-%20individual%20or%20sole%20trader.docx"},{"name": "Onboarding form: body corporate, partnership or unincorporated association (other professional services clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Onboarding%20form%20-%20legal%20profession%20-%20body%20corporate%2C%20partnership%20or%20unincorporated%20association.docx"},{"name": "Initial CDD form: body corporate, partnership or unincorporated association (other professional services clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20legal%20profession%20-%20body%20corporate%2C%20partnership%20or%20association.docx"},{"name": "Onboarding form: trust (other professional services clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Onboarding%20form%20-%20legal%20profession%20-%20trust.docx"},{"name": "Initial CDD form: trust (other professional services clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20legal%20profession%20-%20trust.docx"},{"name": "Onboarding form: government body (other professional services clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Onboarding%20form%20-%20legal%20profession%20-%20government%20body.docx"},{"name": "Initial CDD form: government body (other professional services clients)","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Initial%20customer%20due%20diligence%20form%20-%20legal%20profession%20-%20government%20body.docx"},{"name": "Unusual activity report information form","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Unusual%20activity%20report%20information%20form.docx"},{"name": "Escalation form","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Escalation%20form.docx"},{"name": "Enhanced CDD form","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Enhanced%20CDD%20form.docx"},{"name": "Unusual activity report review form","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Unusual%20activity%20report%20review%20form.docx"},{"name": "Escalation register","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Escalations%20register.docx"},{"name": "Periodic review and update form","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Periodic%20review%20and%20update%20form.docx"},{"name": "Trigger event review and update form","tags": ["For Conveyancers"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Customer%20Forms%20-%20Trigger%20event%20review%20and%20update%20form.docx"},{"name": "Maintain the AML/CTF program","tags": ["For Conveyancers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Maintain%20program%20forms%20-%20Maintain%20your%20AMLCTF%20program%20form.docx"},{"name": "Independent evaluation response","tags": ["For Conveyancers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Maintain%20program%20forms%20-%20Independent%20evaluation%20response%20form.docx"},{"name": "SMR effectiveness check","tags": ["For Conveyancers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Maintain%20program%20forms%20-%20SMR%20effectiveness%20check%20form.docx"},{"name": "Compliance officer and senior manager effectiveness check","tags": ["For Conveyancers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Maintain%20program%20forms%20-%20Compliance%20officer%20and%20senior%20manager%20effectiveness%20check%20form.docx"},{"name": "Client onboarding effectiveness check","tags": ["For Conveyancers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Maintain%20program%20forms%20-%20Client%20onboarding%20effectiveness%20check%20form.docx"},{"name": "Enhanced CDD effectiveness check","tags": ["For Conveyancers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Maintain%20program%20forms%20-%20Enhanced%20CDD%20effectiveness%20check%20form.docx"},{"name": "TTR effectiveness check","tags": ["For Conveyancers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Maintain%20program%20forms%20-%20TTR%20effectiveness%20check%20form.docx"},{"name": "CBM effectiveness check","tags": ["For Conveyancers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Maintain%20program%20forms%20-%20CBM%20reporting%20effectiveness%20check%20form.docx"},{"name": "Periodic effectiveness testing summary","tags": ["For Conveyancers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Maintain%20program%20forms%20-%20Periodic%20effectiveness%20testing%20summary%20form.docx"},{"name": "Annual report to the governing body","tags": ["For Conveyancers","Program","Maintain"],"url": "https://www.austrac.gov.au/sites/default/files/2026-06/Conveyancers%20-%20Maintain%20program%20forms%20-%20Annual%20report%20to%20the%20governing%20body%20form.docx"}];
 
 var activeFormsTag = 'All', formsSearchVal = '';
 var tagStyles = {'Program':'prog','Risk':'risk','Maintain':'maint','Personnel':'pers','For Lawyers':'law','For Conveyancers':'conv'};
 
 function renderForms() {
+  formsSearchVal = '';
   document.getElementById('forms-content').innerHTML =
-    '<p style="font-size:13px;color:#6b7280;margin-bottom:1rem;line-height:1.6;">All forms are from AUSTRAC\'s document library. Click any form to download directly from austrac.gov.au.</p>' +
+    '<p style="font-size:13px;color:#6b7280;margin-bottom:1rem;line-height:1.6;">All forms are from AUSTRAC\'s document library (current versions, updated June 2026). Click any form to download it directly from austrac.gov.au. "For Lawyers" forms come from the legal profession starter kit and "For Conveyancers" forms from the conveyancing starter kit.</p>' +
     '<input class="search-bar" type="text" placeholder="Search forms..." oninput="formsSearch(this.value)">' +
     '<div class="tag-filters" id="tag-filters"></div>' +
     '<div class="forms-list" id="forms-list"></div>' +
-    '<div class="disclaimer" style="margin-top:1.1rem;">Verify form currency at <a href="https://www.austrac.gov.au/industry-and-business/obligations-and-guidance/program-starter-kits/conveyancer-program-starter-kit/conveyancing-program-starter-kit-document-library" target="_blank">AUSTRAC Conveyancing document library</a> and <a href="https://www.austrac.gov.au/industry-and-business/obligations-and-guidance/program-starter-kits/legal-profession-program-starter-kit/legal-profession-program-starter-kit-document-library" target="_blank">Legal Profession document library</a>. Not legal advice.</div>';
+    '<div class="disclaimer" style="margin-top:1.1rem;">Current as at ' + AS_AT + '. Verify form currency at the <a href="' + L.legalKitLib + '" target="_blank">legal profession document library</a> and the <a href="' + L.convKitLib + '" target="_blank">conveyancing document library</a>. Not legal advice.</div>';
   renderTagFilters();
   renderFormsList();
 }
-
 function renderTagFilters() {
   var tags = ['All','Program','Risk','Maintain','Personnel','For Lawyers','For Conveyancers'];
-  var html = tags.map(function(t) {
-    var cls = 'tag-btn' + (activeFormsTag === t ? ' active' : '');
-    return '<button class="' + cls + '" onclick="setFormsTag(\'' + t + '\')">' + t + '</button>';
+  document.getElementById('tag-filters').innerHTML = tags.map(function(t, i) {
+    return '<button class="tag-btn' + (activeFormsTag === t ? ' active' : '') + '" onclick="setFormsTag(' + i + ')">' + t + '</button>';
   }).join('');
-  document.getElementById('tag-filters').innerHTML = html;
 }
-
-function setFormsTag(tag) { activeFormsTag = tag; renderTagFilters(); renderFormsList(); }
+function setFormsTag(i) {
+  activeFormsTag = ['All','Program','Risk','Maintain','Personnel','For Lawyers','For Conveyancers'][i];
+  renderTagFilters(); renderFormsList();
+}
 function formsSearch(val) { formsSearchVal = val; renderFormsList(); }
-
 function renderFormsList() {
   var q = formsSearchVal.toLowerCase().trim();
   var filtered = allForms.filter(function(f) {
@@ -606,7 +743,7 @@ function renderFormsList() {
   }
   document.getElementById('forms-list').innerHTML = filtered.map(function(f) {
     var th = f.tags.map(function(t) { return '<span class="form-tag ' + (tagStyles[t] || 'maint') + '">' + t + '</span>'; }).join('');
-    return '<a class="form-row" href="' + f.url + '" target="_blank"><div class="form-row-left"><div class="form-row-name">' + f.name + '</div><div class="form-row-tags">' + th + '</div></div><div class="form-row-dl">Download</div></a>';
+    return '<a class="form-row" href="' + f.url + '" target="_blank"><div class="form-row-left"><div class="form-row-name">' + esc(f.name) + '</div><div class="form-row-tags">' + th + '</div></div><div class="form-row-dl">Download</div></a>';
   }).join('');
 }
 </script>
